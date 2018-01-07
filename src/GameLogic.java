@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public abstract class GameLogic {
-    private Board board;
-    private Color startingColor, notStartingColor;
+    protected Board board;
+    protected Color startingColor, notStartingColor;
 
     enum ScanDirection {
         NorthWest, North, NorthEast, West, East, SouthWest, South, SouthEast
@@ -10,6 +10,8 @@ public abstract class GameLogic {
     enum GameWinner {
         Draw, BlackWon, WhiteWon
     };
+
+    public GameLogic() {};
 
     public GameLogic(int boardSize, Color startingColor, Color notStartingColor) {
         this.board = new Board(boardSize, startingColor, notStartingColor);
@@ -70,6 +72,52 @@ public abstract class GameLogic {
         return false;
     }
 
+    public Board getBoard() {
+        return this.board;
+    }
+
+    public int getFirstPlayerAdvantage() {
+        int firstPlayerCells = 0;
+        int secondPlayerCells = 0;
+        int boardSize = this.getBoardSize();
+        for (int i = 0; i < boardSize; i++) {
+            for (int j = 0; j < boardSize; j++) {
+                if (this.board.getCellStatus(new Pair(i, j)).getColor() == this.notStartingColor) {
+                    secondPlayerCells++;
+                } else if (this.board.getCellStatus(new Pair(i, j)).getColor() == this.startingColor) {
+                    firstPlayerCells++;
+                }
+            }
+        }
+        return (firstPlayerCells - secondPlayerCells);
+    }
+
+    public int getFirstPlayerScore() {
+        int firstPlayerCells = 0;
+        int boardSize = this.getBoardSize();
+        for (int i = 0; i < boardSize; i++) {
+            for (int j = 0; j < boardSize; j++) {
+                 if (this.board.getCellStatus(new Pair(i, j)).getColor() == this.startingColor) {
+                    firstPlayerCells++;
+                }
+            }
+        }
+        return firstPlayerCells;
+    }
+
+    public int getSecondPlayerScore() {
+        int secondPlayerCells = 0;
+        int boardSize = this.getBoardSize();
+        for (int i = 0; i < boardSize; i++) {
+            for (int j = 0; j < boardSize; j++) {
+                if (this.board.getCellStatus(new Pair(i, j)).getColor() == this.notStartingColor) {
+                    secondPlayerCells++;
+                }
+            }
+        }
+        return secondPlayerCells;
+    }
+
     abstract public boolean validMove(Pair p, ScanDirection scanD, Color opponentP, Color player);
 
     abstract public void possibleMoves(Pair pairArr[], int index, Color player);
@@ -79,11 +127,5 @@ public abstract class GameLogic {
     abstract public void flipCell(Pair p, Color opponentP, Color player);
 
     abstract public boolean checkInput(Pair p, Pair arr[], int count, Display display);
-
-    public Board getBoard() {
-        return this.board;
-    }
-
-    abstract public int getFirstPlayerScore();
 
 }
