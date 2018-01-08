@@ -16,7 +16,7 @@ public class Menu {
     }
 
     public void changeBoardSize(int size) {
-        String oldStr = Integer.toString(size);
+        String oldStr = Integer.toString(this.boardSize);
         String toWrite = Integer.toString(size);
         this.changeLineInText(oldStr, toWrite);
     }
@@ -36,12 +36,14 @@ public class Menu {
         }
         this.changeLineInText(oldStr, toWrite);
     }
+
     public void changeBlackPlayerGameColor(Color color) {
         String oldStr;
         String toWrite = this.getStringFromColor(color);
         oldStr = this.getStringFromColor(this.blackPlayerGameColor);
         this.changeLineInText(oldStr, toWrite);
     }
+
     public void changeWhitePlayerGameColor(Color color) {
         String oldStr;
         String toWrite = this.getStringFromColor(color);
@@ -55,7 +57,6 @@ public class Menu {
             BufferedReader file = new BufferedReader(new FileReader(this.settingsName));
             String line;
             StringBuffer inputBuffer = new StringBuffer();
-
             while ((line = file.readLine()) != null) {
                 inputBuffer.append(line);
                 inputBuffer.append('\n');
@@ -64,7 +65,6 @@ public class Menu {
 
             file.close();
 
-            System.out.println(inputStr); // check that it's inputted right
 
             // this if structure determines whether or not to replace "0" or "1"
             if (inputStr.contains(oldString)) {
@@ -72,9 +72,6 @@ public class Menu {
             } else {
                 System.out.println("The file doesn't contain the old setting to replace");
             }
-
-            // check if the new input is right
-            System.out.println("----------------------------------\n"  + inputStr);
 
             // write the new String with the replaced line OVER the same file
             FileOutputStream fileOut = new FileOutputStream(this.settingsName);
