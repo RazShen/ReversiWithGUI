@@ -5,6 +5,5 @@ public interface Player {
     void noMove(Display display);
     boolean isStarter();
     Color getColor();
-    void setColor();
 
 }

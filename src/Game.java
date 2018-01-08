@@ -32,7 +32,7 @@ public class Game {
                 if (this.gameLogic.checkAndAnnounceFinish(noMoreActionsB, noMoreActionW, display)) {
                     return;
                 }
-                this.gameLogic.possibleMoves(pArr, moves, (HumanPlayer)bHP.);
+                this.gameLogic.possibleMoves(pArr, moves, this.bHP.getColor());
                 if (moves == 0) {
                     this.bHP.noMove(this.display);
                     noMoreActionsB = true;
@@ -64,7 +64,4 @@ public class Game {
                 this.blackTurn = true;
             }
         }
-
-    }
-
 }
