@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class HumanPlayer implements Player {
     private boolean isFirstPlayer;
@@ -16,25 +18,21 @@ public class HumanPlayer implements Player {
         scanIndex = 0;
         xUser = -5;
         yUser = -5;
+
         display.itsYourMove(this);
         display.printPossibleMoves(positions, moves);
         display.printString("Please enter your move row (space) col: ");
-        while(scanner.hasNext()) {
-            if (scanIndex == 0) {
-                xUser = scanner.nextInt();
-                scanIndex++;
-            } else if (scanIndex == 1) {
-                yUser = scanner.nextInt();
-                scanIndex++;
-            }
+        String point = null;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            point = reader.readLine();
+            xUser = Character.getNumericValue(point.charAt(0));
+            yUser = Character.getNumericValue(point.charAt(2));
+        } catch (Exception e) {
+            xUser = -5;
+            yUser = -5;
         }
-//        if (cin.fail()) {
-//            cin.clear();
-//            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-//            // illegal value in purpose
-//            xUser = -5;
-//            yUser = -5;
-//        }
+
         Pair inputUser = new Pair(xUser, yUser);
         return inputUser;
     }
