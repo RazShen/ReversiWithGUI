@@ -120,12 +120,13 @@ public abstract class GameLogic {
 
     abstract public boolean validMove(Pair p, ScanDirection scanD, Color opponentP, Color player);
 
-    abstract public void possibleMoves(Pair pairArr[], int index, Color player);
+    abstract public int possibleMoves(Pair pairArr[], int index, Color player);
 
     abstract public boolean checkCell(Pair p, Color opponentP, Color player);
 
     abstract public void flipCell(Pair p, Color opponentP, Color player);
 
     abstract public boolean checkInput(Pair p, Pair arr[], int count, Display display);
+
 
 }

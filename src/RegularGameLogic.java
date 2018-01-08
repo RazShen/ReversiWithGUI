@@ -75,7 +75,7 @@ public class RegularGameLogic extends GameLogic {
     }
 
     @Override
-    public void possibleMoves(Pair pairArr[], int index, Color player) {
+    public int possibleMoves(Pair pairArr[], int index, Color player) {
         int size = this.getBoardSize();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -94,6 +94,7 @@ public class RegularGameLogic extends GameLogic {
                 }
             }
         }
+        return index;
     }
 
     @Override
@@ -363,4 +364,5 @@ public class RegularGameLogic extends GameLogic {
             }
         }
     }
+
 }
