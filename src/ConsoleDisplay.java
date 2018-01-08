@@ -70,9 +70,9 @@ public class ConsoleDisplay implements Display {
     @Override
     public void itsYourMove(Player p) {
         if (!p.isStarter()) {
-            System.out.println("O: It's your move.");
+            System.out.println("Player2: It's your move.");
         } else {
-            System.out.println("X: It's your move.");
+            System.out.println("Player1: It's your move.");
         }
     }
 
