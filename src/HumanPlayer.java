@@ -54,4 +54,12 @@ public class HumanPlayer implements Player {
         // prints a new line
         display.printString("");
     }
+    public Color getColor() {
+        return this.gamePieceColor;
+    }
+
+    public void setColor(Color gamePieceColor) {
+        this.gamePieceColor = gamePieceColor;
+    }
 }
+
