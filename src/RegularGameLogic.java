@@ -3,6 +3,11 @@ import java.awt.*;
 public class RegularGameLogic extends GameLogic {
 
 
+    public RegularGameLogic(int boardSize, Color startingColor, Color notStartingColor) {
+        this.board = new Board(boardSize, startingColor, notStartingColor);
+        this.notStartingColor = notStartingColor;
+        this.startingColor = startingColor;
+    }
     @Override
     public boolean validMove(Pair p, GameLogic.ScanDirection scanD, Color opponentP, Color player) {
         int x = p.getRow();

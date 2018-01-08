@@ -2,6 +2,7 @@ import java.awt.*;
 import java.io.*;
 
 public class Menu {
+
     private boolean blackStart;
     private Color blackPlayerGameColor;
     private Color whitePlayerGameColor;
@@ -161,4 +162,21 @@ public class Menu {
             return "Black";
         }
     }
+
+    public boolean isBlackStart() {
+        return blackStart;
+    }
+
+    public Color getBlackPlayerGameColor() {
+        return blackPlayerGameColor;
+    }
+
+    public Color getWhitePlayerGameColor() {
+        return whitePlayerGameColor;
+    }
+
+    public int getBoardSize() {
+        return boardSize;
+    }
+
 }
