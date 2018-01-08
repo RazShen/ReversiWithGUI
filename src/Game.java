@@ -27,7 +27,7 @@ public class Game {
             moves = 0;
             //new
             Pair pArr[] = new Pair[this.gameLogic.getBoardSize() * this.gameLogic.getBoardSize() + 1];
-       //     cout << "Current board:" << endl << endl;
+            //     cout << "Current board:" << endl << endl;
             display.printBoard(this.gameLogic.getBoard());
             if (this.blackTurn) {
                 if (this.gameLogic.checkAndAnnounceFinish(noMoreActionsB, noMoreActionW, display)) {
@@ -42,12 +42,12 @@ public class Game {
                         userInput = bHP.getMove(pArr, moves, wHP.getColor(), display);
                     } while (!this.gameLogic.checkInput(userInput, pArr, moves, display));
                     this.gameLogic.flipCell(userInput, wHP.getColor(), bHP.getColor());
-               //     display.xPlayed();
+                    //     display.xPlayed();
                     display.printPair(new Pair(userInput.getRow() - 1, userInput.getCol() - 1));
                     noMoreActionsB = false;
                 }
                 this.blackTurn = false;
-            }
+            } else {
                 moves = this.gameLogic.possibleMoves(pArr, moves, wHP.getColor());
                 if (moves == 0) {
                     this.wHP.noMove(this.display);
@@ -62,5 +62,6 @@ public class Game {
                 }
                 this.blackTurn = true;
             }
+        }
         }
 }
