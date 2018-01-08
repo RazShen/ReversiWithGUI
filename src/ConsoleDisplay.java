@@ -5,7 +5,7 @@ public class ConsoleDisplay implements Display {
     public void printBoard(Board board) {
         int size = board.getSize();
         GamePiece[][] gamePieces;
-        gamePieces = new GamePiece[size][size];
+        gamePieces = board.getGamePieces();
         Color startingColor = board.getStartingColor();
         Color notStartingColor = board.getNotStartingColor();
         int i, j;

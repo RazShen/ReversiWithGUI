@@ -4,7 +4,7 @@ public class main {
         Display display = new ConsoleDisplay();
         Menu menu = new Menu();
         menu.parseMenuFromText();
-        GameLogic gameLogic = new RegularGameLogic(menu.getBoardSize(), menu.getBlackPlayerGameColor(),
+        RegularGameLogic gameLogic = new RegularGameLogic(menu.getBoardSize(), menu.getBlackPlayerGameColor(),
                 menu.getWhitePlayerGameColor());
         if (menu.isBlackStart()) {
             game = new Game(gameLogic, display, menu.getBlackPlayerGameColor(), menu.getWhitePlayerGameColor());
