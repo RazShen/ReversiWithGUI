@@ -28,9 +28,7 @@ public class HumanPlayer implements Player {
             yUser = Character.getNumericValue(point.charAt(2));
         } catch (Exception e) {
         }
-
-        Pair inputUser = new Pair(xUser, yUser);
-        return inputUser;
+        return  new Pair(xUser, yUser);
     }
 
     public boolean isStarter() {
