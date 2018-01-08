@@ -2,15 +2,15 @@ import java.awt.*;
 
 public class GamePiece {
     private Color color;
+    private boolean isEmpty;
 
     public boolean isEmpty() {
         return isEmpty;
     }
 
-    private boolean isEmpty;
-
     GamePiece() {
         this.isEmpty = true;
+        this.color = Color.LIGHT_GRAY;
     }
 
     public Color getColor() {

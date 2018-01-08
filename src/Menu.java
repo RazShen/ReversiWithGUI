@@ -11,8 +11,8 @@ public class Menu {
     private String settingsName;
 
     public Menu() {
-        this.parseMenuFromText();
         this.settingsName = "settings.txt";
+        this.parseMenuFromText();
     }
 
     public void changeBoardSize(int size) {
@@ -158,6 +158,8 @@ public class Menu {
             return "Green";
         } else if (c == Color.RED) {
             return "Red";
+        } else if (c== Color.CYAN) {
+            return "Cyan";
         } else {
             return "Black";
         }
