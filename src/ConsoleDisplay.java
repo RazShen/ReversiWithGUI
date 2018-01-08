@@ -12,17 +12,16 @@ public class ConsoleDisplay implements Display {
         char symbol = ' ';
         System.out.print(" |") ;
         for (i = 0; i < size; i++) {
-            System.out.print(" " + i + 1 + " |");
+            System.out.print(" " + (i+1) + " |");
         }
-        System.out.println("");
+        System.out.println(" ");
         System.out.print("--");
         for (i = 0; i < size; i++) {
             System.out.print("----");
         }
-        System.out.println("");
+        System.out.println(" ");
         for (i = 0; i < size; i++) {
-            System.out.print(i + 1 + "|");
-
+            System.out.print((i+1) + "|");
             for (j = 0; j < size; j++) {
                 if (gamePieces[i][j].isEmpty()) {
                     symbol = ' ';
@@ -33,14 +32,14 @@ public class ConsoleDisplay implements Display {
                 if (gamePieces[i][j].getColor() == startingColor) {
                     symbol = 'X';
                 }
-                System.out.println(" " + symbol + " |");
+                System.out.print(" " + symbol + " |");
             }
-            System.out.println("");
+            System.out.println(" ");
             System.out.print("--");
             for (j = 0; j < size; j++) {
                 System.out.print("----");
             }
-            System.out.println("");
+            System.out.println(" ");
         }
     }
 
@@ -59,7 +58,7 @@ public class ConsoleDisplay implements Display {
 
     @Override
     public void printPair(Pair p) {
-        System.out.print("(" + p.getRow() + 1 + "," + p.getCol() + 1 + ")");
+        System.out.print("(" + (p.getRow() + 1) + "," + (p.getCol() + 1) + ")");
 
     }
 
