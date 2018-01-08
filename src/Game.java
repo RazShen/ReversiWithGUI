@@ -2,18 +2,18 @@ import java.awt.*;
 
 public class Game {
 
-    private boolean  blackTurn;;
-    private Player bHP;
-    private Player wHP;
+    private boolean player1Turn;;
+    private Player player1;
+    private Player player2;
     private Display display;
     private GameLogic gameLogic;
 
     public Game(GameLogic gameLogic, Display display, Color player1Color, Color player2Color) {
         this.gameLogic = gameLogic;
         this.display = display;
-        this.blackTurn = true;
-        this.bHP = new HumanPlayer(true, player1Color);
-        this.wHP = new HumanPlayer(false, player2Color);
+        this.player1Turn = true;
+        this.player1 = new HumanPlayer(true, player1Color);
+        this.player2 = new HumanPlayer(false, player2Color);
 
     }
 
@@ -28,37 +28,37 @@ public class Game {
             //new
             Pair pArr[] = new Pair[this.gameLogic.getBoardSize() * this.gameLogic.getBoardSize() + 1];
             display.printBoard(this.gameLogic.getBoard());
-            if (this.blackTurn) {
+            if (this.player1Turn) {
                 if (this.gameLogic.checkAndAnnounceFinish(noMoreActionsB, noMoreActionW, display)) {
                     return;
                 }
-                moves = this.gameLogic.possibleMoves(pArr, moves, this.bHP.getColor());
+                moves = this.gameLogic.possibleMoves(pArr, moves, this.player1.getColor());
                 if (moves == 0) {
-                    this.bHP.noMove(this.display);
+                    this.player1.noMove(this.display);
                     noMoreActionsB = true;
                 } else {
                     do {
-                        userInput = bHP.getMove(pArr, moves, wHP.getColor(), display);
+                        userInput = player1.getMove(pArr, moves, player2.getColor(), display);
                     } while (!this.gameLogic.checkInput(userInput, pArr, moves, display));
-                    this.gameLogic.flipCell(userInput, wHP.getColor(), bHP.getColor());
+                    this.gameLogic.flipCell(userInput, player2.getColor(), player1.getColor());
                     //display.printPair(new Pair(userInput.getRow() - 1, userInput.getCol() - 1));
                     noMoreActionsB = false;
                 }
-                this.blackTurn = false;
+                this.player1Turn = false;
             } else {
-                moves = this.gameLogic.possibleMoves(pArr, moves, wHP.getColor());
+                moves = this.gameLogic.possibleMoves(pArr, moves, player2.getColor());
                 if (moves == 0) {
-                    this.wHP.noMove(this.display);
+                    this.player2.noMove(this.display);
                     noMoreActionW = true;
                 } else {
                     do {
-                        userInput = wHP.getMove(pArr, moves, bHP.getColor(), display);
+                        userInput = player2.getMove(pArr, moves, player1.getColor(), display);
                     } while (!this.gameLogic.checkInput(userInput, pArr, moves, display));
-                    this.gameLogic.flipCell(userInput, bHP.getColor(), wHP.getColor());
+                    this.gameLogic.flipCell(userInput, player1.getColor(), player2.getColor());
                     //display.printPair(new Pair(userInput.getRow() - 1, userInput.getCol() - 1));
                     noMoreActionW = false;
                 }
-                this.blackTurn = true;
+                this.player1Turn = true;
             }
         }
         }
