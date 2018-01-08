@@ -13,9 +13,7 @@ public class HumanPlayer implements Player {
     }
 
     public Pair getMove(Pair positions[], int moves, Color opponentColor, Display display) {
-        Scanner scanner =new Scanner(System.in);
-        int xUser, yUser, scanIndex;
-        scanIndex = 0;
+        int xUser, yUser;
         xUser = -5;
         yUser = -5;
 
@@ -29,8 +27,6 @@ public class HumanPlayer implements Player {
             xUser = Character.getNumericValue(point.charAt(0));
             yUser = Character.getNumericValue(point.charAt(2));
         } catch (Exception e) {
-            xUser = -5;
-            yUser = -5;
         }
 
         Pair inputUser = new Pair(xUser, yUser);
