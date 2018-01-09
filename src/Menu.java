@@ -24,15 +24,15 @@ public class Menu {
     public void changeStartingPlayer(boolean blackStarts) {
         String oldStr;
         if (this.blackStart) {
-            oldStr = "t";
+            oldStr = "true";
         } else {
-            oldStr = "f";
+            oldStr = "false";
         }
         String toWrite;
         if (blackStarts) {
-            toWrite = "t";
+            toWrite = "true";
         } else {
-            toWrite = "f";
+            toWrite = "false";
         }
         this.changeLineInText(oldStr, toWrite);
     }
@@ -93,7 +93,7 @@ public class Menu {
                 if (i == 0) {
                     this.boardSize = Integer.parseInt(line);
                 } else if (i == 1) {
-                   if (line.contains("t")) {
+                   if (line.contains("true")) {
                        this.blackStart = true;
                    } else {
                        this.blackStart = false;

@@ -1,4 +1,4 @@
 8
-f
-Cyan
-Whife
+true
+Black
+White
