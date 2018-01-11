@@ -1,4 +1,4 @@
-package sample;
+package ReversiGUI;
 
 public class Controller {
 }
