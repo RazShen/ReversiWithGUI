@@ -9,6 +9,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class MenuController {
 
     @FXML
@@ -55,25 +57,26 @@ public class MenuController {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-  //  }
+   // }
+         @FXML
+        protected void settings() {
+            try {
+                Stage stage = (Stage) Settings.getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReversiGUI/Settings.fxml"));
 
-//    @FXML
-//    protected void settings() {
-//        try {
-//            Stage stage = (Stage) Settings.getScene().getWindow();
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reversi/Settings.fxml"));
-//
-//            VBox root = (VBox) loader.load();
-//            loader.setController(new SettingsController());
-//            Scene settingsScene = new Scene(root, 640, 500);
-//
-//            stage.setScene(settingsScene);
-//            stage.show();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+                VBox root = (VBox) loader.load();
+                loader.setController(new SettingsController());
+                Scene settingsScene = new Scene(root, 640, 500);
+
+                stage.setScene(settingsScene);
+                stage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
 
     @FXML
     protected void exitGame() {
