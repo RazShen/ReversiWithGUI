@@ -17,7 +17,7 @@ public class Main extends Application {
         try {
             GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("ReversiXML.fxml"));
             Scene scene = new Scene(root,400,350);
-            //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
             primaryStage.setTitle("FXML Welcome");
             primaryStage.setScene(scene);
             primaryStage.show();
