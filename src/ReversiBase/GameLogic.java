@@ -134,6 +134,4 @@ public abstract class GameLogic {
     abstract public void flipCell(Pair p, Color opponentP, Color player);
 
     abstract public boolean checkInput(Pair p, Pair arr[], int count, Display display);
-
-
 }

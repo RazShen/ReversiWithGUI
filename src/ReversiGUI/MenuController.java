@@ -14,7 +14,7 @@ import java.io.IOException;
 public class MenuController {
 
     @FXML
-    private Button StartGame;
+    private Button Start_Game;
     @FXML
     private Button Settings;
     @FXML
@@ -34,7 +34,7 @@ public class MenuController {
 //                String player1Color = parser.getPlayer2Color();
 //                String player2Color = parser.getPlayer1Color();
 //            }
-            Stage stage = (Stage) StartGame.getScene().getWindow();
+            Stage stage = (Stage) Start_Game.getScene().getWindow();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
             loader.setController(new GameController());
