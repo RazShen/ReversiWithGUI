@@ -14,7 +14,7 @@ import java.io.IOException;
 public class MenuController {
 
     @FXML
-    private Button Start_Game;
+    private Button StartGame;
     @FXML
     private Button Settings;
     @FXML
@@ -23,17 +23,25 @@ public class MenuController {
     @FXML
     protected void startGame() {
         try {
-            SettingsParser parser = new SettingsParser();
-            parser.parseSettingsFile();
-            int size = parser.getBoardSize();
-            String startingPlayer = parser.getStartingPlayer();
-            if (startingPlayer.equals("player1")) {
-                String player1Color = parser.getPlayer1Color();
-                String player2Color = parser.getPlayer2Color();
-            } else {
-                String player1Color = parser.getPlayer2Color();
-                String player2Color = parser.getPlayer1Color();
-            }
+//            SettingsParser parser = new SettingsParser();
+//            parser.parseSettingsFile();
+//            int size = parser.getBoardSize();
+//            String startingPlayer = parser.getStartingPlayer();
+//            if (startingPlayer.equals("player1")) {
+//                String player1Color = parser.getPlayer1Color();
+//                String player2Color = parser.getPlayer2Color();
+//            } else {
+//                String player1Color = parser.getPlayer2Color();
+//                String player2Color = parser.getPlayer1Color();
+//            }
+            Stage stage = (Stage) StartGame.getScene().getWindow();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+            loader.setController(new GameController());
+            HBox root = (HBox) loader.load();
+            Scene reversiGameScene = new Scene(root, 640, 500);
+            stage.setScene(reversiGameScene);
+            stage.show();
 
 //            ClickListener clickListener = new ClickListener();
 //            Board board = new Board(row, col);
@@ -66,7 +74,7 @@ public class MenuController {
         protected void settings() {
             try {
                 Stage stage = (Stage) Settings.getScene().getWindow();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReversiGUI/Settings.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Settings.fxml"));
 
                 VBox root = (VBox) loader.load();
                 loader.setController(new SettingsController());

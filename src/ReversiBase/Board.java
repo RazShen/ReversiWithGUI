@@ -1,7 +1,10 @@
 package ReversiBase;
 
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 
 public class Board extends GridPane{
@@ -67,6 +70,37 @@ public class Board extends GridPane{
         return this.notStartingColor;
     }
 
-}
+//    public void draw() {
+//        this.getChildren().clear();
+//        for (int i = 1; i <= size; i++) {
+//            for (int j = 1; j <= size; j++) {
+//                Rectangle rectangle = new Rectangle(600 / size,600 / size);
+//                rectangle.setStroke(Color.BLACK);
+//                rectangle.setFill(Color.rgb(37,109,140));
+//                StackPane cell = new StackPane();
+//                cell.getChildren().add(rectangle);
+//                this.add(cell, i , j);
+//                if (this.gamePieces[i][j].getColor().toString().equals(this.startingColor.toString())) {
+//                    this.add(new Circle(cell.getWidth()/2, cell.getHeight()/2,
+//                            300/size ,this.startingColor), i, j);
+//                } else if (this.gamePieces[i][j].toString().equals(this.notStartingColor.toString())) {
+//                    this.add(new Circle(cell.getWidth()/2, cell.getHeight()/2,
+//                            300/size ,this.notStartingColor), i, j);
+//                } else {
+//                    for (int k = 0; k < possibleMoves.size(); k++) {
+//                        if (possibleMoves.get(k).getRow() == table[i][j].getSpot().getRow()
+//                                && possibleMoves.get(k).getCol() == table[i][j].getSpot().getCol()) {
+//                            this.add(new Circle(cell.getWidth()/2, cell.getHeight()/2,
+//                                    100/size, possibleColor), i, j);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
+
+
+
+    }
 
 

@@ -21,7 +21,7 @@
                         <Font name="System Bold Italic" size="51.0" />
                     </font>
                 </Label>
-                <Button fx:id="Start_Game" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" prefHeight="60.0" prefWidth="117.0" text="Start Game" textAlignment="CENTER">
+                <Button fx:id="Start_Game" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#startGame" prefHeight="60.0" prefWidth="117.0" text="Start Game" textAlignment="CENTER">
                     <VBox.margin>
                         <Insets left="120.0" />
                     </VBox.margin>
