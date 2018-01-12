@@ -1,8 +1,8 @@
 package ReversiBase;
 
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
-import java.awt.*;
 
 public class Board extends GridPane{
     private GamePiece[][] gamePieces;
