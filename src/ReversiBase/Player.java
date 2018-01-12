@@ -1,6 +1,7 @@
 package ReversiBase;
 
-import java.awt.*;
+
+import javafx.scene.paint.Color;
 
 public interface Player {
     Pair getMove(Pair positions[], int moves, Color opponentStat, Display display);

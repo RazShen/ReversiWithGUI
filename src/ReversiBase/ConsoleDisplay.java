@@ -1,6 +1,7 @@
 package ReversiBase;
 
-import java.awt.*;
+
+import javafx.scene.paint.Color;
 
 public class ConsoleDisplay implements Display {
     @Override
@@ -27,12 +28,13 @@ public class ConsoleDisplay implements Display {
             for (j = 0; j < size; j++) {
                 if (gamePieces[i][j].isEmpty()) {
                     symbol = ' ';
-                }
-                if (gamePieces[i][j].getColor() == notStartingColor) {
-                    symbol = 'O';
-                }
-                if (gamePieces[i][j].getColor() == startingColor) {
-                    symbol = 'X';
+                } else {
+                    if (gamePieces[i][j].getColor().toString().equals(notStartingColor.toString())) {
+                        symbol = 'O';
+                    }
+                    if (gamePieces[i][j].getColor().toString().equals(startingColor.toString())) {
+                        symbol = 'X';
+                    }
                 }
                 System.out.print(" " + symbol + " |");
             }

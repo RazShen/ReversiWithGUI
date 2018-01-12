@@ -1,19 +1,26 @@
 package ReversiBase;
 
+import ReversiGUI.*;
+import javafx.scene.paint.Color;
+
 public class main {
-    public static void main(String[] args) {
+    public static void k(String[] args) {
         Game game;
         Display display = new ConsoleDisplay();
 
-        Menu menu = new Menu();
-        menu.parseMenuFromText();
-        RegularGameLogic gameLogic = new RegularGameLogic(menu.getBoardSize(), menu.getBlackPlayerGameColor(),
-                menu.getWhitePlayerGameColor());
+        SettingsParser settingsParser = new SettingsParser();
+        settingsParser.parseSettingsFile();
 
-        if (menu.isBlackStart()) {
-            game = new Game(gameLogic, display, menu.getBlackPlayerGameColor(), menu.getWhitePlayerGameColor());
+        if (settingsParser.getStartingPlayer().equals("player1")) {
+            RegularGameLogic gameLogic = new RegularGameLogic(settingsParser.getBoardSize(),
+                    Color.web(settingsParser.getPlayer1Color()), Color.web(settingsParser.getPlayer2Color()));
+            game = new Game(gameLogic, display, Color.web(settingsParser.getPlayer1Color()),
+                    Color.web(settingsParser.getPlayer2Color()));
         } else {
-            game = new Game(gameLogic, display, menu.getWhitePlayerGameColor(), menu.getBlackPlayerGameColor());
+            RegularGameLogic gameLogic = new RegularGameLogic(settingsParser.getBoardSize(),
+                    Color.web(settingsParser.getPlayer2Color()), Color.web(settingsParser.getPlayer1Color()));
+            game = new Game(gameLogic, display, Color.web(settingsParser.getPlayer2Color()),
+                    Color.web(settingsParser.getPlayer1Color()));
         }
         game.run();
 

@@ -1,6 +1,7 @@
 package ReversiBase;
 
-import java.awt.*;
+
+import javafx.scene.paint.Color;
 
 public class RegularGameLogic extends GameLogic {
 
@@ -18,58 +19,66 @@ public class RegularGameLogic extends GameLogic {
         switch (scanD) {
             case NorthWest:
                 for (; x >= 0 && y >= 0; x--, y--) {
-                    if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+                    if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString()) ) {
                         continue;
-                    } else return this.board.getCellStatus(new Pair(x, y)).getColor() == player;
+                    } else return
+                            this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString());
                 }
                 return false;
             case North:
                 for (; x >= 0 && y >= 0; x--) {
-                    if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+                    if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
                         continue;
-                    } else return this.board.getCellStatus(new Pair(x, y)).getColor() == player;
+                    } else return
+                            this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString());
                 }
                 return false;
             case NorthEast:
                 for (; x >= 0 && y < size; x--, y++) {
-                    if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+                    if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
                         continue;
-                    } else return this.board.getCellStatus(new Pair(x, y)).getColor() == player;
+                    } else return
+                            this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString());
                 }
                 return false;
             case West:
                 for (; x >= 0 && y >= 0; y--) {
-                    if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+                    if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
                         continue;
-                    } else return this.board.getCellStatus(new Pair(x, y)).getColor() == player;
+                    } else return
+                            this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString());
                 }
                 return false;
             case East:
                 for (; x >= 0 && y < size; y++) {
-                    if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+                    if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
                         continue;
-                    } else return this.board.getCellStatus(new Pair(x, y)).getColor() == player;
+                    } else return
+                            this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString());
                 }
                 return false;
             case SouthWest:
                 for (; x < size && y >= 0; x++, y--) {
-                    if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+                    if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
                         continue;
-                    } else return this.board.getCellStatus(new Pair(x, y)).getColor() == player;
+                    } else return
+                            this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString());
                 }
                 return false;
             case South:
                 for (; x < size && y >= 0; x++) {
-                    if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+                    if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
                         continue;
-                    } else return this.board.getCellStatus(new Pair(x, y)).getColor() == player;
+                    } else return
+                            this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString());
                 }
                 return false;
             case SouthEast:
                 for (; x < size && y < size; x++, y++) {
-                    if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+                    if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
                         continue;
-                    } else return this.board.getCellStatus(new Pair(x, y)).getColor() == player;
+                    } else return
+                            this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString());
                 }
                 return false;
         }
@@ -82,7 +91,7 @@ public class RegularGameLogic extends GameLogic {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (this.board.getCellStatus(new Pair(i, j)).isEmpty()) {
-                    if (player == this.startingColor) {
+                    if (player.toString().equals(this.startingColor.toString()) ) {
                         if (checkCell(new Pair(i, j), this.notStartingColor, this.startingColor)) {
                             pairArr[index] = new Pair(i, j);
                             index++;
@@ -104,52 +113,60 @@ public class RegularGameLogic extends GameLogic {
         int size = this.getBoardSize();
         if (p.getRow() > 0 && p.getCol() > 0 &&
                 this.board.getCellStatus(new Pair(p.getRow() - 1, p.getCol() - 1))
-                        .getColor() == opponentP) {
+                        .getColor().toString().equals(opponentP.toString()) ) {
             //scan north-west
             if (validMove(new Pair(p.getRow() - 1, p.getCol() - 1), ScanDirection.NorthWest, opponentP, player)) {
                 return true;
             }
         }
-        if (p.getRow() > 0 && this.board.getCellStatus(new Pair(p.getRow() - 1, p.getCol())).getColor() == opponentP) {
+        if (p.getRow() > 0 &&
+                this.board.getCellStatus(new Pair(p.getRow() - 1, p.getCol()))
+                        .getColor().toString().equals(opponentP.toString())) {
             //scan north
             if (validMove(new Pair(p.getRow() - 1, p.getCol()), ScanDirection.North, opponentP, player)) {
                 return true;
             }
         }
         if (p.getRow() > 0 && p.getCol() < size - 1 &&
-                this.board.getCellStatus(new Pair(p.getRow() - 1, p.getCol() + 1)).getColor() == opponentP) {
+                this.board.getCellStatus(new Pair(p.getRow() - 1, p.getCol() + 1))
+                        .getColor().toString().equals(opponentP.toString())) {
             //scan north-east
             if (validMove(new Pair(p.getRow() - 1, p.getCol() + 1), ScanDirection.NorthEast, opponentP, player)) {
                 return true;
             }
         }
-        if (p.getCol() > 0 && this.board.getCellStatus(new Pair(p.getRow(), p.getCol() - 1)).getColor() == opponentP) {
+        if (p.getCol() > 0 && this.board.getCellStatus(new Pair(p.getRow(), p.getCol() - 1))
+                .getColor().toString().equals(opponentP.toString())) {
             //scan west
             if (validMove(new Pair(p.getRow(), p.getCol() - 1), ScanDirection.West, opponentP, player)) {
                 return true;
             }
         }
-        if (p.getCol() < size - 1 && this.board.getCellStatus(new Pair(p.getRow(), p.getCol() + 1)).getColor() == opponentP) {
+        if (p.getCol() < size - 1 && this.board.getCellStatus(new Pair(p.getRow(), p.getCol() + 1))
+                .getColor().toString().equals(opponentP.toString())) {
             //scan east
             if (validMove(new Pair(p.getRow(), p.getCol() + 1), ScanDirection.East, opponentP, player)) {
                 return true;
             }
         }
         if (p.getRow() < size - 1 && p.getCol() > 0 &&
-                this.board.getCellStatus(new Pair(p.getRow() + 1, p.getCol() - 1)).getColor() == opponentP) {
+                this.board.getCellStatus(new Pair(p.getRow() + 1, p.getCol() - 1))
+                        .getColor().toString().equals(opponentP.toString())) {
             //scan south-west
             if (validMove(new Pair(p.getRow() + 1, p.getCol() - 1), ScanDirection.SouthWest, opponentP, player)) {
                 return true;
             }
         }
-        if (p.getRow() < size - 1 && this.board.getCellStatus(new Pair(p.getRow() + 1, p.getCol())).getColor() == opponentP) {
+        if (p.getRow() < size - 1 && this.board.getCellStatus(new Pair(p.getRow() + 1, p.getCol()))
+                .getColor().toString().equals(opponentP.toString())) {
             //scan south
             if (validMove(new Pair(p.getRow() + 1, p.getCol()), ScanDirection.South, opponentP, player)) {
                 return true;
             }
         }
         if (p.getRow() < size - 1 && p.getCol() < size - 1 &&
-                this.board.getCellStatus(new Pair(p.getRow() + 1, p.getCol() + 1)).getColor() == opponentP) {
+                this.board.getCellStatus(new Pair(p.getRow() + 1, p.getCol() + 1))
+                        .getColor().toString().equals(opponentP.toString())) {
             //scan south-east
             if (validMove(new Pair(p.getRow() + 1, p.getCol() + 1), ScanDirection.SouthEast, opponentP, player)) {
                 return true;
@@ -190,10 +207,10 @@ public class RegularGameLogic extends GameLogic {
         int y = p.getCol() - 1;
         int count = -1;
         for (; x >= 0 && y >= 0; x--, y--) {
-            if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
                 count++;
                 maybeFlipArr[count] = new Pair(x, y);
-            } else if (this.board.getCellStatus(new Pair(x, y)).getColor() == player) {
+            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString())) {
                 for (int i = 0; i <= count; i++) {
                     this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
                 }
@@ -213,10 +230,10 @@ public class RegularGameLogic extends GameLogic {
         int y = p.getCol() - 1;
         int count = -1;
         for (; x >= 0 && y >= 0; x--) {
-            if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString()) ) {
                 count++;
                 maybeFlipArr[count] = new Pair(x, y);
-            } else if (this.board.getCellStatus(new Pair(x, y)).getColor() == player) {
+            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString())) {
                 for (int i = 0; i <= count; i++) {
                     this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
                 }
@@ -236,10 +253,10 @@ public class RegularGameLogic extends GameLogic {
         int y = p.getCol() - 1;
         int count = -1;
         for (; x >= 0 && y >= 0 && y < size; x--, y++) {
-            if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
                 count++;
                 maybeFlipArr[count] = new Pair(x, y);
-            } else if (this.board.getCellStatus(new Pair(x, y)).getColor() == player) {
+            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString()) ) {
                 for (int i = 0; i <= count; i++) {
                     this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
                 }
@@ -259,10 +276,10 @@ public class RegularGameLogic extends GameLogic {
         int y = p.getCol() - 1;
         int count = -1;
         for (; x >= 0 && y >= 0; y--) {
-            if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
                 count++;
                 maybeFlipArr[count] = new Pair(x, y);
-            } else if (this.board.getCellStatus(new Pair(x, y)).getColor() == player) {
+            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString()) ) {
                 for (int i = 0; i <= count; i++) {
                     this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
                 }
@@ -282,10 +299,10 @@ public class RegularGameLogic extends GameLogic {
         int y = p.getCol() - 1;
         int count = -1;
         for (; x >= 0 && y < size; y++) {
-            if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
                 count++;
                 maybeFlipArr[count] = new Pair(x, y);
-            } else if (this.board.getCellStatus(new Pair(x, y)).getColor() == player) {
+            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().equals(player.toString()) ) {
                 for (int i = 0; i <= count; i++) {
                     this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
                 }
@@ -305,10 +322,10 @@ public class RegularGameLogic extends GameLogic {
         int y = p.getCol() - 1;
         int count = -1;
         for (; x < size && x >= 0 && y >= 0; x++, y--) {
-            if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString()) ) {
                 count++;
                 maybeFlipArr[count] = new Pair(x, y);
-            } else if (this.board.getCellStatus(new Pair(x, y)).getColor() == player) {
+            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString()) ) {
                 for (int i = 0; i <= count; i++) {
                     this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
                 }
@@ -328,10 +345,10 @@ public class RegularGameLogic extends GameLogic {
         int y = p.getCol() - 1;
         int count = -1;
         for (; x < size && y >= 0; x++) {
-            if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString()) ) {
                 count++;
                 maybeFlipArr[count] = new Pair(x, y);
-            } else if (this.board.getCellStatus(new Pair(x, y)).getColor() == player) {
+            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString()) ) {
                 for (int i = 0; i <= count; i++) {
                     this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
                 }
@@ -351,10 +368,10 @@ public class RegularGameLogic extends GameLogic {
         int y = p.getCol() - 1;
         int count = -1;
         for (; x < size && y < size; x++, y++) {
-            if (this.board.getCellStatus(new Pair(x, y)).getColor() == opponentP) {
+            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString()) ) {
                 count++;
                 maybeFlipArr[count] = new Pair(x, y);
-            } else if (this.board.getCellStatus(new Pair(x, y)).getColor() == player) {
+            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString()) ) {
                 for (int i = 0; i <= count; i++) {
                     this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
                 }

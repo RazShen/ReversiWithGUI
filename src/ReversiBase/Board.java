@@ -1,6 +1,7 @@
 package ReversiBase;
 
-import java.awt.*;
+
+import javafx.scene.paint.Color;
 
 public class Board {
     private GamePiece[][] gamePieces;
@@ -28,8 +29,7 @@ public class Board {
         if (p.getRow() >= 0 && p.getRow() < this.size && p.getCol() >= 0 && p.getCol() < this.size) {
             return this.gamePieces[p.getRow()][p.getCol()];
         }
-        GamePiece emptyGamePiece = new GamePiece();
-        return emptyGamePiece;
+        return new GamePiece();
     }
 
     public void changeStatus(Pair p, Color c) {

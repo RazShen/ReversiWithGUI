@@ -1,6 +1,7 @@
 package ReversiBase;
 
-import java.awt.*;
+
+import javafx.scene.paint.Color;
 
 public abstract class GameLogic {
     protected Board board;
@@ -27,9 +28,9 @@ public abstract class GameLogic {
         int size = this.getBoardSize();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (this.board.getCellStatus(new Pair(i, j)).getColor() == notStartingColor) {
+                if (this.board.getCellStatus(new Pair(i, j)).getColor().toString().equals(notStartingColor.toString()) ) {
                     secondPlayerCells++;
-                } else if (this.board.getCellStatus(new Pair(i, j)).getColor() == startingColor) {
+                } else if (this.board.getCellStatus(new Pair(i, j)).getColor().toString().equals(startingColor.toString()) ) {
                     firstPlayerCells++;
                 }
             }
@@ -84,9 +85,11 @@ public abstract class GameLogic {
         int boardSize = this.getBoardSize();
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
-                if (this.board.getCellStatus(new Pair(i, j)).getColor() == this.notStartingColor) {
+                if (this.board.getCellStatus(new Pair(i, j)).getColor().toString()
+                        .equals(this.notStartingColor.toString())) {
                     secondPlayerCells++;
-                } else if (this.board.getCellStatus(new Pair(i, j)).getColor() == this.startingColor) {
+                } else if (this.board.getCellStatus(new Pair(i, j))
+                        .getColor().toString().equals(this.startingColor.toString())) {
                     firstPlayerCells++;
                 }
             }
@@ -99,7 +102,8 @@ public abstract class GameLogic {
         int boardSize = this.getBoardSize();
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
-                 if (this.board.getCellStatus(new Pair(i, j)).getColor() == this.startingColor) {
+                 if (this.board.getCellStatus(new Pair(i, j)).getColor().toString()
+                         .equals(this.startingColor.toString()) ) {
                     firstPlayerCells++;
                 }
             }
@@ -112,7 +116,8 @@ public abstract class GameLogic {
         int boardSize = this.getBoardSize();
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
-                if (this.board.getCellStatus(new Pair(i, j)).getColor() == this.notStartingColor) {
+                if (this.board.getCellStatus(new Pair(i, j)).getColor()
+                        .toString().equals(this.notStartingColor.toString()) ) {
                     secondPlayerCells++;
                 }
             }

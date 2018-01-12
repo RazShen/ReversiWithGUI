@@ -1,6 +1,7 @@
 package ReversiBase;
 
-import java.awt.*;
+
+import javafx.scene.paint.Color;
 
 public class GamePiece {
     private Color color;
@@ -12,10 +13,12 @@ public class GamePiece {
 
     GamePiece() {
         this.isEmpty = true;
-        this.color = Color.LIGHT_GRAY;
     }
 
     public Color getColor() {
+        if (this.isEmpty) {
+            return Color.BISQUE;
+        }
         return color;
     }
 

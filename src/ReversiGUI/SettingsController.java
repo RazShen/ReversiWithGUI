@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,16 +35,27 @@ public class SettingsController implements Initializable {
 
     @FXML
     protected void mainMenu() throws IOException {
+        try {
+            String writeStartingP;
+            SettingsParser parser = new SettingsParser();
+            if (WhoStarts.getValue().equals("Player 1")) {
+                writeStartingP = "player1";
+            } else {
+                writeStartingP = "player2";
+            }
+            parser.writeNewSettings(BoardSize.getValue(), writeStartingP, Player1Color.getValue().toString(),
+                    Player2Color.getValue().toString());
+            Stage primaryStage = (Stage) MenuButton.getScene().getWindow();
 
-        Stage primaryStage = (Stage) MenuButton.getScene().getWindow();
-
-        GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("MenuControllerFXML.fxml"));
-        Scene scene = new Scene(root, 640, 500);
-        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-        primaryStage.setTitle("Reversi");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
+            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("MenuControllerFXML.fxml"));
+            Scene scene = new Scene(root, 640, 500);
+            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            primaryStage.setTitle("Reversi");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -52,10 +64,22 @@ public class SettingsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         WhoStarts.getItems().addAll("Player 1", "Player 2");
-        for(int i = 4; i < 20; i++) {
+        for(int i = 4; i < 21; i++) {
             BoardSize.getItems().add(i);
         }
+        parseSettingsFile();
     }
 
-
+    private void parseSettingsFile() {
+        SettingsParser parser = new SettingsParser();
+        parser.parseSettingsFile();
+        BoardSize.setValue(parser.getBoardSize());
+        Player1Color.setValue(Color.web(parser.getPlayer1Color()));
+        Player2Color.setValue(Color.web(parser.getPlayer2Color()));
+        if (parser.getStartingPlayer().equals("player1")) {
+            WhoStarts.setValue("Player 1");
+        } else {
+            WhoStarts.setValue("Player 2");
+        }
+    }
 }
