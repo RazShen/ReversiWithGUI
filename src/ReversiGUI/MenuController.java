@@ -20,17 +20,21 @@ public class MenuController {
     @FXML
     private Button Exit;
 
-//    @FXML
- //   protected void startGame() {
-//        try {
-            //ParseSettingsFile parser = new ParseSettingsFile();
-//
-//            parser.parseSettingsFile();
-//            int row = parser.getRowBox();
-//            int col = parser.getColBox();
-//            String player1Color = parser.getPlayer1Color();
-//            String player2Color = parser.getPlayer2Color();
-//
+    @FXML
+    protected void startGame() {
+        try {
+            SettingsParser parser = new SettingsParser();
+            parser.parseSettingsFile();
+            int size = parser.getBoardSize();
+            String startingPlayer = parser.getStartingPlayer();
+            if (startingPlayer.equals("player1")) {
+                String player1Color = parser.getPlayer1Color();
+                String player2Color = parser.getPlayer2Color();
+            } else {
+                String player1Color = parser.getPlayer2Color();
+                String player2Color = parser.getPlayer1Color();
+            }
+
 //            ClickListener clickListener = new ClickListener();
 //            Board board = new Board(row, col);
 //            GuiPlayer p1 = new GuiPlayer(player1Color, Owner.PLAYER_1, clickListener);
@@ -54,10 +58,10 @@ public class MenuController {
 //            stage.setScene(reversiGameScene);
 //            stage.show();
 //
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-   // }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
          @FXML
         protected void settings() {
             try {

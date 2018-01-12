@@ -1,4 +1,4 @@
-5
+13
 player2
-0xb3ccffff
-0xb34d1aff
+0x999900ff
+0xb3b34dff
