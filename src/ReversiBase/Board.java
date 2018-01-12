@@ -1,9 +1,10 @@
 package ReversiBase;
 
+import javafx.scene.layout.GridPane;
 
-import javafx.scene.paint.Color;
+import java.awt.*;
 
-public class Board {
+public class Board extends GridPane{
     private GamePiece[][] gamePieces;
     private int size;
     private Color startingColor;
@@ -29,7 +30,8 @@ public class Board {
         if (p.getRow() >= 0 && p.getRow() < this.size && p.getCol() >= 0 && p.getCol() < this.size) {
             return this.gamePieces[p.getRow()][p.getCol()];
         }
-        return new GamePiece();
+        GamePiece emptyGamePiece = new GamePiece();
+        return emptyGamePiece;
     }
 
     public void changeStatus(Pair p, Color c) {
