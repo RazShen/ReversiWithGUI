@@ -23,49 +23,13 @@ public class MenuController {
     @FXML
     protected void startGame() {
         try {
-//            SettingsParser parser = new SettingsParser();
-//            parser.parseSettingsFile();
-//            int size = parser.getBoardSize();
-//            String startingPlayer = parser.getStartingPlayer();
-//            if (startingPlayer.equals("player1")) {
-//                String player1Color = parser.getPlayer1Color();
-//                String player2Color = parser.getPlayer2Color();
-//            } else {
-//                String player1Color = parser.getPlayer2Color();
-//                String player2Color = parser.getPlayer1Color();
-//            }
             Stage stage = (Stage) Start_Game.getScene().getWindow();
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
-            //loader.setController(new GameController());
             HBox root = (HBox) loader.load();
-            Scene reversiGameScene = new Scene(root, 800, 600);
+            Scene reversiGameScene = new Scene(root, 800, 605);
             stage.setScene(reversiGameScene);
             stage.show();
 
-//            ClickListener clickListener = new ClickListener();
-//            Board board = new Board(row, col);
-//            GuiPlayer p1 = new GuiPlayer(player1Color, Owner.PLAYER_1, clickListener);
-//            GuiPlayer p2 = new GuiPlayer(player2Color, Owner.PLAYER_2, clickListener);
-//            GameState gameState = new GameState(board);
-//            ReversiDefaultRules rules = new ReversiDefaultRules();
-//            Stage stage = (Stage) Start_Game.getScene().getWindow();
-//
-//
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reversi/GameScene.fxml"));
-//            ReversiBoardController reversiBoardController = new ReversiBoardController(board, clickListener);
-//
-//            loader.setController(reversiBoardController);
-//
-//            HBox root = (HBox) loader.load();
-//
-//
-//            Scene reversiGameScene = new Scene(root, 640, 500);
-//            GuiManager guiManager = new GuiManager(gameState, p1, p2, rules, 1);
-//
-//            stage.setScene(reversiGameScene);
-//            stage.show();
-//
         } catch (Exception e) {
             e.printStackTrace();
         }

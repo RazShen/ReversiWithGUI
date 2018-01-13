@@ -10,5 +10,5 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="ReversiGUI.GameController"
       fx:id="root"
-      prefHeight="600.0" prefWidth="800.0">
+      prefHeight="605.0" prefWidth="800.0">
 </HBox>
