@@ -3,6 +3,7 @@ package ReversiGUI;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -46,9 +47,9 @@ public class SettingsController implements Initializable {
             parser.writeNewSettings(BoardSize.getValue(), writeStartingP, Player1Color.getValue().toString(),
                     Player2Color.getValue().toString());
             Stage primaryStage = (Stage) MenuButton.getScene().getWindow();
-
             GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("MenuControllerFXML.fxml"));
-            Scene scene = new Scene(root, 640, 500);
+            root.setAlignment(Pos.CENTER);
+            Scene scene = new Scene(root, 650, 600);
             scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
             primaryStage.setTitle("Reversi");
             primaryStage.setScene(scene);

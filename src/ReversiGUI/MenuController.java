@@ -42,7 +42,7 @@ public class MenuController {
 
                 VBox root = (VBox) loader.load();
                 loader.setController(new SettingsController());
-                Scene settingsScene = new Scene(root, 600, 600);
+                Scene settingsScene = new Scene(root, 650, 600);
 
                 stage.setScene(settingsScene);
                 stage.show();

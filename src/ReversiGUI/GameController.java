@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -51,6 +52,8 @@ public class GameController implements Initializable {
     @FXML
     private Label extraMessage;
 
+    @FXML
+    private Button quit;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.noMoreActionsP1 = false;
@@ -79,9 +82,9 @@ public class GameController implements Initializable {
         extraMessage = new Label ("");
         extraMessage.setFont(new Font(15));
         message.setFont(new Font(15));
-        Button quit = new Button("Quit");
-        quit.setOnAction(ev -> {
-            loadFXML("MenuControllerFXML.fxml", 600, 605, ev);
+        this.quit = new Button("Quit");
+        this.quit.setOnAction(ev -> {
+            loadFXML("MenuControllerFXML.fxml", 650, 600, ev);
         });
         root.setAlignment(Pos.TOP_LEFT);
         root.setSpacing(20);
@@ -232,11 +235,14 @@ public class GameController implements Initializable {
     @FXML
     protected void loadFXML(String fxml, int width, int height, ActionEvent event) {
         try {
-            Parent parent = FXMLLoader.load(getClass().getResource(fxml));
-            Scene scene = new Scene(parent, width, height);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            Stage primaryStage = (Stage) this.quit.getScene().getWindow();
+            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("MenuControllerFXML.fxml"));
+            root.setAlignment(Pos.CENTER);
+            Scene scene = new Scene(root, 650, 600);
+            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            primaryStage.setTitle("Reversi");
+            primaryStage.setScene(scene);
+            primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
