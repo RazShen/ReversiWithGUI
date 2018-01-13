@@ -4,15 +4,23 @@ import ReversiBase.Board;
 import ReversiBase.GameLogic;
 import ReversiBase.Pair;
 import ReversiBase.RegularGameLogic;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -71,10 +79,15 @@ public class GameController implements Initializable {
         extraMessage = new Label ("");
         extraMessage.setFont(new Font(15));
         message.setFont(new Font(15));
+        Button quit = new Button("Quit");
+        quit.setOnAction(ev -> {
+            loadFXML("MenuControllerFXML.fxml", 600, 605, ev);
+        });
         root.setAlignment(Pos.TOP_LEFT);
         root.setSpacing(20);
         gameStatus.setSpacing(10);
-        gameStatus.getChildren().addAll(currentPlayer, player1Score, player2Score, message, extraMessage);
+
+        gameStatus.getChildren().addAll(currentPlayer, player1Score, player2Score, message, extraMessage, quit);
         root.getChildren().add(gameStatus);
         this.isPlayer1 = true;
         this.gameLogic = new RegularGameLogic(this.board, Color.web(this.player1Color), Color.web(this.player2Color));
@@ -214,5 +227,18 @@ public class GameController implements Initializable {
     private boolean checkInput(Pair input) {
        // this.gameLogic.validMove()
         return false;
+    }
+
+    @FXML
+    protected void loadFXML(String fxml, int width, int height, ActionEvent event) {
+        try {
+            Parent parent = FXMLLoader.load(getClass().getResource(fxml));
+            Scene scene = new Scene(parent, width, height);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
