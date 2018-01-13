@@ -179,25 +179,7 @@ public class RegularGameLogic extends GameLogic {
     @Override
     public void flipCell(Pair p, Color opponentP, Color player) {
         this.board.changeStatus(new Pair(p.getRow() - 1, p.getCol() - 1), player);
-        flip(p, opponentP, player, 1, 1);
-        flip(p, opponentP, player, 1, 0);
-        flip(p, opponentP, player, 1, -1);
-
-        flip(p, opponentP, player, 0, -1);
-        flip(p, opponentP, player, 0, 1);
-        flip(p, opponentP, player, -1, -1);
-        flip(p, opponentP, player, -1, 1);
-        flip(p, opponentP, player, -1, 0);
-
-
-//        flipNorthWest(p, opponentP, player);
-//        flipNorth(p, opponentP, player);
-//        flipNorthEast(p, opponentP, player);
-//        flipWest(p, opponentP, player);
-//        flipEast(p, opponentP, player);
-//        flipSouthWest(p, opponentP, player);
-//        flipSouth(p, opponentP, player);
-//        flipSouthEast(p, opponentP, player);
+        flipAllDirections(p,opponentP, player);
     }
 
     @Override
@@ -210,7 +192,7 @@ public class RegularGameLogic extends GameLogic {
         return false;
     }
 
-    private void flip(Pair p, Color opponentP, Color player, int xDirection, int yDirection) {
+    private void flipDirection(Pair p, Color opponentP, Color player, int xDirection, int yDirection) {
         int size = this.getBoardSize();
         Pair maybeFlipArr[] = new Pair[size];
         int x = p.getRow() - 1;
@@ -235,192 +217,14 @@ public class RegularGameLogic extends GameLogic {
         }
     }
 
-
-//
-//    public void flipNorthWest(Pair p, Color opponentP, Color player) {
-//        int size = this.getBoardSize();
-//        Pair maybeFlipArr[] = new Pair[size];
-//        int x = p.getRow() - 1;
-//        int y = p.getCol() - 1;
-//        int count = -1;
-//        for (; x >= 0 && y >= 0; x--, y--) {
-//            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
-//                count++;
-//                maybeFlipArr[count] = new Pair(x, y);
-//            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString())) {
-//                for (int i = 0; i <= count; i++) {
-//                    this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
-//                }
-//                if (count != -1) {
-//                    break;
-//                }
-//            } else {
-//                break;
-//            }
-//        }
-//    }
-//
-//    private void flipNorth(Pair p, Color opponentP, Color player) {
-//        int size = this.getBoardSize();
-//        Pair maybeFlipArr[] = new Pair[size];
-//        int x = p.getRow() - 1;
-//        int y = p.getCol() - 1;
-//        int count = -1;
-//        for (; x >= 0 && y >= 0; x--) {
-//            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
-//                count++;
-//                maybeFlipArr[count] = new Pair(x, y);
-//            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString())) {
-//                for (int i = 0; i <= count; i++) {
-//                    this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
-//                }
-//                if (count != -1) {
-//                    break;
-//                }
-//            } else {
-//                break;
-//            }
-//        }
-//    }
-//
-//    private void flipNorthEast(Pair p, Color opponentP, Color player) {
-//        int size = this.getBoardSize();
-//        Pair maybeFlipArr[] = new Pair[size];
-//        int x = p.getRow() - 1;
-//        int y = p.getCol() - 1;
-//        int count = -1;
-//        for (; x >= 0 && y >= 0 && y < size; x--, y++) {
-//            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
-//                count++;
-//                maybeFlipArr[count] = new Pair(x, y);
-//            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString())) {
-//                for (int i = 0; i <= count; i++) {
-//                    this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
-//                }
-//                if (count != -1) {
-//                    break;
-//                }
-//            } else {
-//                break;
-//            }
-//        }
-//    }
-//
-//    private void flipWest(Pair p, Color opponentP, Color player) {
-//        int size = this.getBoardSize();
-//        Pair maybeFlipArr[] = new Pair[size];
-//        int x = p.getRow() - 1;
-//        int y = p.getCol() - 1;
-//        int count = -1;
-//        for (; x >= 0 && y >= 0; y--) {
-//            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
-//                count++;
-//                maybeFlipArr[count] = new Pair(x, y);
-//            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString())) {
-//                for (int i = 0; i <= count; i++) {
-//                    this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
-//                }
-//                if (count != -1) {
-//                    break;
-//                }
-//            } else {
-//                break;
-//            }
-//        }
-//    }
-//
-//    private void flipEast(Pair p, Color opponentP, Color player) {
-//        int size = this.getBoardSize();
-//        Pair maybeFlipArr[] = new Pair[size];
-//        int x = p.getRow() - 1;
-//        int y = p.getCol() - 1;
-//        int count = -1;
-//        for (; x >= 0 && y < size; y++) {
-//            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
-//                count++;
-//                maybeFlipArr[count] = new Pair(x, y);
-//            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString())) {
-//                for (int i = 0; i <= count; i++) {
-//                    this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
-//                }
-//                if (count != -1) {
-//                    break;
-//                }
-//            } else {
-//                break;
-//            }
-//        }
-//    }
-//
-//    private void flipSouthWest(Pair p, Color opponentP, Color player) {
-//        int size = this.getBoardSize();
-//        Pair maybeFlipArr[] = new Pair[size];
-//        int x = p.getRow() - 1;
-//        int y = p.getCol() - 1;
-//        int count = -1;
-//        for (; x < size && x >= 0 && y >= 0; x++, y--) {
-//            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
-//                count++;
-//                maybeFlipArr[count] = new Pair(x, y);
-//            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString())) {
-//                for (int i = 0; i <= count; i++) {
-//                    this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
-//                }
-//                if (count != -1) {
-//                    break;
-//                }
-//            } else {
-//                break;
-//            }
-//        }
-//    }
-//
-//    private void flipSouth(Pair p, Color opponentP, Color player) {
-//        int size = this.getBoardSize();
-//        Pair maybeFlipArr[] = new Pair[size];
-//        int x = p.getRow() - 1;
-//        int y = p.getCol() - 1;
-//        int count = -1;
-//        for (; x < size && y >= 0; x++) {
-//            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
-//                count++;
-//                maybeFlipArr[count] = new Pair(x, y);
-//            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString())) {
-//                for (int i = 0; i <= count; i++) {
-//                    this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
-//                }
-//                if (count != -1) {
-//                    break;
-//                }
-//            } else {
-//                break;
-//            }
-//        }
-//    }
-//
-//    private void flipSouthEast(Pair p, Color opponentP, Color player) {
-//        int size = this.getBoardSize();
-//        Pair maybeFlipArr[] = new Pair[size];
-//        int x = p.getRow() - 1;
-//        int y = p.getCol() - 1;
-//        int count = -1;
-//        for (; x < size && y < size; x++, y++) {
-//            if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(opponentP.toString())) {
-//                count++;
-//                maybeFlipArr[count] = new Pair(x, y);
-//            } else if (this.board.getCellStatus(new Pair(x, y)).getColor().toString().equals(player.toString())) {
-//                for (int i = 0; i <= count; i++) {
-//                    this.board.changeStatus(new Pair(maybeFlipArr[i].getRow(), maybeFlipArr[i].getCol()), player);
-//                }
-//                if (count != -1) {
-//                    break;
-//                }
-//            } else {
-//                break;
-//            }
-//        }
-//    }
-
-
-
+    private void flipAllDirections(Pair p, Color opponentP, Color player) {
+        flipDirection(p, opponentP, player, 1, 1);
+        flipDirection(p, opponentP, player, 1, 0);
+        flipDirection(p, opponentP, player, 1, -1);
+        flipDirection(p, opponentP, player, 0, -1);
+        flipDirection(p, opponentP, player, 0, 1);
+        flipDirection(p, opponentP, player, -1, -1);
+        flipDirection(p, opponentP, player, -1, 1);
+        flipDirection(p, opponentP, player, -1, 0);
+    }
 }
