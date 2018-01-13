@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
@@ -41,13 +42,22 @@ public class GuiBoard extends GridPane {
         System.out.println(cellWidth);
         for (int i = 0; i < board.getSize(); i++) {
             for (int j = 0; j < board.getSize(); j++) {
-                if (board.getGamePieces()[i][j].isEmpty()) {
-                    this.add(new Rectangle(cellWidth, cellHeight, Color.rgb(37, 109, 140)), j, i);
-                } else {
-                    this.add(new Rectangle(cellWidth, cellHeight, board.getGamePieces()[i][j].getColor()), j, i);
+                Rectangle rec = new Rectangle(cellWidth, cellHeight, Color.WHEAT);
+                rec.setStroke(Color.BLACK);
+                rec.setStrokeWidth(1);
+                this.add(rec, j, i);
+            }
+        }
+
+        for (int i = 0; i < board.getSize(); i++) {
+            for (int j = 0; j < board.getSize(); j++) {
+                if (!board.getGamePieces()[i][j].isEmpty()) {
+                    this.add(new Circle(((cellWidth+1)/2)*i,((cellHeight+1)/2)*j, (cellHeight/2), board.getGamePieces()[i][j].getColor()), j, i);
                 }
             }
         }
     }
 
-    }
+
+
+}

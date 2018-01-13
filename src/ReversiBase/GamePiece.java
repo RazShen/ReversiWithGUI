@@ -17,7 +17,7 @@ public class GamePiece {
 
     public Color getColor() {
         if (this.isEmpty) {
-            return Color.BISQUE;
+            return Color.WHEAT;
         }
         return color;
     }

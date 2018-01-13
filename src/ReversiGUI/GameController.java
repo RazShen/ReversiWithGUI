@@ -42,7 +42,7 @@ public class GameController implements Initializable {
         this.board = new Board(size, Color.web(player1Color), Color.web(player2Color));
         GuiBoard guiBoard = new GuiBoard(board);
         root.getChildren().add(0, guiBoard);
-        root.setAlignment(Pos.CENTER);
+        root.setAlignment(Pos.TOP_LEFT);
         guiBoard.draw();
 
     }
