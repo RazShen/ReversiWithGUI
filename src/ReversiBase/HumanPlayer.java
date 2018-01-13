@@ -29,7 +29,7 @@ public class HumanPlayer implements Player {
             yUser = Character.getNumericValue(point.charAt(2));
         } catch (Exception e) {
         }
-        return  new Pair(xUser, yUser);
+        return new Pair(xUser, yUser);
     }
 
     public boolean isStarter() {

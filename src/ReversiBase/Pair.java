@@ -2,7 +2,7 @@ package ReversiBase;
 
 public class Pair {
     private int row, column;
-    Pair(int row, int column) {
+    public Pair(int row, int column) {
         this.row = row;
         this.column = column;
     }

@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class GuiBoard extends GridPane {
     private Board board;
-
+    private int cellSize;
     public GuiBoard(Board board) {
         this.board = board;
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GuiBoard.fxml"));
@@ -38,8 +38,7 @@ public class GuiBoard extends GridPane {
 
         int cellHeight = height / board.getSize();
         int cellWidth = width / board.getSize();
-        System.out.println(cellHeight);
-        System.out.println(cellWidth);
+        this.cellSize = (height / board.getSize()) + 1;
         for (int i = 0; i < board.getSize(); i++) {
             for (int j = 0; j < board.getSize(); j++) {
                 Rectangle rec = new Rectangle(cellWidth, cellHeight, Color.WHEAT);
@@ -58,6 +57,8 @@ public class GuiBoard extends GridPane {
         }
     }
 
-
+    public int getCellSize() {
+        return this.cellSize;
+    }
 
 }
