@@ -7,8 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +24,14 @@ public class GameController implements Initializable {
     private HBox root;
 
     @FXML
-    private Button settingsButton;
+    private Label message;
+
+    @FXML
+    private Label currentPlayer;
+    @FXML
+    private Label player1Score;
+    @FXML
+    private Label player2Score;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,6 +53,13 @@ public class GameController implements Initializable {
         root.getChildren().add(0, guiBoard);
         root.setAlignment(Pos.TOP_LEFT);
         guiBoard.draw();
+
+        currentPlayer = new Label("Current player: First");
+        player1Score = new Label("First player's score: 2");
+        player2Score = new Label("Second player's score: 2");
+        message = new Label("Player 1: It's your move!");
+        message.setFont(new Font(30));
+
 
     }
 
