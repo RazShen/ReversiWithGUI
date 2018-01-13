@@ -6,8 +6,8 @@ import javafx.scene.paint.Color;
 public class RegularGameLogic extends GameLogic {
 
 
-    public RegularGameLogic(int boardSize, Color startingColor, Color notStartingColor) {
-        this.board = new Board(boardSize, startingColor, notStartingColor);
+    public RegularGameLogic(Board board, Color startingColor, Color notStartingColor) {
+        this.board = board;
         this.notStartingColor = notStartingColor;
         this.startingColor = startingColor;
     }
@@ -189,14 +189,12 @@ public class RegularGameLogic extends GameLogic {
     }
 
     @Override
-    public boolean checkInput(Pair p, Pair arr[], int count, Display display) {
+    public boolean checkInput(Pair p, Pair arr[], int count) {
         for (int i = 0; i < count; i++) {
             if (p.getRow() - 1 == arr[i].getRow() && p.getCol() - 1 == arr[i].getCol()) {
                 return true;
             }
         }
-        display.printString("");
-        display.printString("Bad arguments, please type only a valid move");
         return false;
     }
 

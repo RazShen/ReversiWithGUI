@@ -42,7 +42,7 @@ public class Game {
                 } else {
                     do {
                         userInput = player1.getMove(pArr, moves, player2.getColor(), display);
-                    } while (!this.gameLogic.checkInput(userInput, pArr, moves, display));
+                    } while (!this.gameLogic.checkInput(userInput, pArr, moves));
                     this.gameLogic.flipCell(userInput, player2.getColor(), player1.getColor());
                     //display.printPair(new ReversiBase.Pair(userInput.getRow() - 1, userInput.getCol() - 1));
                     noMoreActionsB = false;
@@ -56,7 +56,7 @@ public class Game {
                 } else {
                     do {
                         userInput = player2.getMove(pArr, moves, player1.getColor(), display);
-                    } while (!this.gameLogic.checkInput(userInput, pArr, moves, display));
+                    } while (!this.gameLogic.checkInput(userInput, pArr, moves));
                     this.gameLogic.flipCell(userInput, player1.getColor(), player2.getColor());
                     //display.printPair(new ReversiBase.Pair(userInput.getRow() - 1, userInput.getCol() - 1));
                     noMoreActionW = false;
@@ -64,5 +64,5 @@ public class Game {
                 this.player1Turn = true;
             }
         }
-        }
+    }
 }

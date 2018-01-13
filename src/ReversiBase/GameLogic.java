@@ -16,8 +16,8 @@ public abstract class GameLogic {
 
     public GameLogic() {};
 
-    public GameLogic(int boardSize, Color startingColor, Color notStartingColor) {
-        this.board = new Board(boardSize, startingColor, notStartingColor);
+    public GameLogic(Board board, Color startingColor, Color notStartingColor) {
+        this.board = board;
         this.notStartingColor = notStartingColor;
         this.startingColor = startingColor;
     }
@@ -133,5 +133,5 @@ public abstract class GameLogic {
 
     abstract public void flipCell(Pair p, Color opponentP, Color player);
 
-    abstract public boolean checkInput(Pair p, Pair arr[], int count, Display display);
+    abstract public boolean checkInput(Pair p, Pair arr[], int count);
 }
