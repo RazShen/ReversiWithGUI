@@ -1,4 +1,4 @@
-13
+4
 player2
 0x999900ff
 0xb3b34dff
