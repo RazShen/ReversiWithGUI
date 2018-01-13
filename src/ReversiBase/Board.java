@@ -7,7 +7,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 
-public class Board extends GridPane{
+public class Board extends GridPane {
     private GamePiece[][] gamePieces;
     private int size;
     private Color startingColor;

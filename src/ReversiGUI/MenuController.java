@@ -39,7 +39,7 @@ public class MenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
             loader.setController(new GameController());
             HBox root = (HBox) loader.load();
-            Scene reversiGameScene = new Scene(root, 640, 500);
+            Scene reversiGameScene = new Scene(root, 600, 600);
             stage.setScene(reversiGameScene);
             stage.show();
 
@@ -78,7 +78,7 @@ public class MenuController {
 
                 VBox root = (VBox) loader.load();
                 loader.setController(new SettingsController());
-                Scene settingsScene = new Scene(root, 640, 500);
+                Scene settingsScene = new Scene(root, 600, 600);
 
                 stage.setScene(settingsScene);
                 stage.show();
