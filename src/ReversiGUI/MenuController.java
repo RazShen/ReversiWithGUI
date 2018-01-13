@@ -19,7 +19,6 @@ public class MenuController {
     private Button Settings;
     @FXML
     private Button Exit;
-
     @FXML
     protected void startGame() {
         try {
@@ -37,9 +36,8 @@ public class MenuController {
             Stage stage = (Stage) Start_Game.getScene().getWindow();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
-            //loader.setController(new GameController());
             HBox root = (HBox) loader.load();
-            Scene reversiGameScene = new Scene(root, 800, 600);
+            Scene reversiGameScene = new Scene(root, 600, 600);
             stage.setScene(reversiGameScene);
             stage.show();
 
@@ -87,8 +85,6 @@ public class MenuController {
                 e.printStackTrace();
             }
         }
-
-
 
     @FXML
     protected void exitGame() {
