@@ -7,15 +7,12 @@ import ReversiBase.RegularGameLogic;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-
-import javax.xml.stream.Location;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,6 +21,11 @@ public class GameController implements Initializable {
 
     private Board board;
     private GameLogic gameLogic;
+    private boolean isPlayer1;
+    private String player1Color;
+    private String player2Color;
+    private boolean noMoreActionsP1;
+    private boolean noMoreActionsP2;
     @FXML
     private GuiBoard guiBoard;
     @FXML
@@ -42,11 +44,11 @@ public class GameController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        this.noMoreActionsP1 = false;
+        this.noMoreActionsP2 = false;
         SettingsParser parser = new SettingsParser();
         parser.parseSettingsFile();
         int size = parser.getBoardSize();
-        String player1Color, player2Color;
         String startingPlayer = parser.getStartingPlayer();
         if (startingPlayer.equals("player1")) {
             player1Color = parser.getPlayer1Color();
@@ -71,19 +73,77 @@ public class GameController implements Initializable {
         gameStatus.setSpacing(10);
         gameStatus.getChildren().addAll(currentPlayer, player1Score, player2Score, message);
         root.getChildren().add(gameStatus);
-        this.startGame();
-
-
-
+        this.isPlayer1 = true;
+        this.gameLogic = new RegularGameLogic(this.board.getSize(), Color.web(this.player1Color),
+                Color.web(this.player2Color));
+        guiBoard.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            Pair move = convertClickToPair(e.getX(), e.getY());
+            this.singleMove(move);
+        });
     }
 
     @FXML
-    protected void startGame() {
-        guiBoard.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            Pair move = convertClickToPair(e.getX(), e.getY());
-            //performMove(move);
-        });
+    protected void singleMove(Pair move) {
+        int moves = 0;
+        Pair pArr[] = new Pair[this.gameLogic.getBoardSize() * this.gameLogic.getBoardSize() + 1];
+        if (this.isPlayer1) {
+            moves = gameLogic.possibleMoves(pArr, moves, Color.web(this.player1Color));
+        } else {
+            moves = gameLogic.possibleMoves(pArr, moves, Color.web(this.player2Color));
+        }
+        int firstScore = gameLogic.getFirstPlayerScore();
+        int secondScore = gameLogic.getSecondPlayerScore();
+        boolean validMove = this.gameLogic.checkInput(move, pArr, moves);
+
+        if (validMove) {
+//            board.getTable()[move.getRow()][move.getCol()].updateStatus(otherTurn());
+//            logic.flipDeadCell(move.getRow(), move.getCol(), board);
+//            System.out.println(move.getRow() + " " + move.getCol());
+//            System.out.println(board.getTable()[move.getRow()][move.getCol()].getStatus());
+//            if (logic.getTurn() == Type.FIRST) {
+//                logic.setTurn(Type.SECOND);
+//                currentPlayer.setText("Current Player: Second");
+//                message.setText("Player 2: It's your move!");
+//            } else {
+//                logic.setTurn(Type.FIRST);
+//                currentPlayer.setText("Current Player: First");
+//                message.setText("Player 1: It's your move!");
+//            }
+//            board.setPossibleMoves(logic.getPossibleMoves());
+//            board.draw();
+//            firstScore = logic.checkScore(board.getTable(), boardSize, 1);
+//            secondScore = logic.checkScore(board.getTable(), boardSize, 2);
+//            player1Score.setText("First player's score: " + firstScore);
+//            player2Score.setText("Second Player's score : " + secondScore);
+            if (this.isPlayer1) {
+                this.isPlayer1 = false;
+            } else {
+                this.isPlayer1 = true;
+            }
+        } else {
+            if (this.board.isBoardFull() || (this.noMoreActionsP2 && this.noMoreActionsP1)) {
+                if (firstScore > secondScore) {
+                    message.setText("Game Over\nFirst player wins!");
+                } else if (secondScore > firstScore) {
+                    message.setText("Game Over\nSecond player wins!");
+                } else {
+                    message.setText("Game Over\nIt's a Tie!");
+                }
+            } else if (moves == 0) {
+                if (this.isPlayer1) {
+                    message.setText("Player 1:\nYou have no more moves!");
+                    this.isPlayer1 = false;
+                } else {
+                    message.setText("Player 2:\nYou have no more moves!");
+                    this.isPlayer1 = true;
+                }
+            } else {
+                message.setText("That not a valid move");
+            }
+        }
     }
+
+
 
     private Pair convertClickToPair(double x, double y) {
         int cellSize = this.guiBoard.getCellSize();
@@ -91,8 +151,7 @@ public class GameController implements Initializable {
             for (int j = 0; j < this.board.getSize(); j++) {
                 if (x >= i*cellSize && x <= (i+1)* cellSize) {
                     if (y >= j*cellSize && y <= (j+1) * cellSize) {
-                        System.out.println((i+1) + "," + (j+1));
-                        return new Pair(i+ 1, j+ 1);
+                        return new Pair( j+ 1, i+ 1);
                     }
                 }
             }

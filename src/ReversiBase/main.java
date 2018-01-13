@@ -4,7 +4,7 @@ import ReversiGUI.*;
 import javafx.scene.paint.Color;
 
 public class main {
-    public static void k(String[] args) {
+    public static void regGame(String[] args) {
         Game game;
         Display display = new ConsoleDisplay();
 

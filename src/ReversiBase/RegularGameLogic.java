@@ -189,14 +189,12 @@ public class RegularGameLogic extends GameLogic {
     }
 
     @Override
-    public boolean checkInput(Pair p, Pair arr[], int count, Display display) {
+    public boolean checkInput(Pair p, Pair arr[], int count) {
         for (int i = 0; i < count; i++) {
             if (p.getRow() - 1 == arr[i].getRow() && p.getCol() - 1 == arr[i].getCol()) {
                 return true;
             }
         }
-        display.printString("");
-        display.printString("Bad arguments, please type only a valid move");
         return false;
     }
 
