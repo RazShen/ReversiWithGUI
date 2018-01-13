@@ -135,7 +135,8 @@ public class GameController implements Initializable {
             player1Score.setText("First player's score: " + firstScore);
             player2Score.setText("Second Player's score : " + secondScore);
 
-        } else {
+        }
+        else {
             if (this.board.isBoardFull() || (this.noMoreActionsP2 && this.noMoreActionsP1)) {
                 if (firstScore > secondScore) {
                     message.setText("Game Over\nFirst player wins!");
