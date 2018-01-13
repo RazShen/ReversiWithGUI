@@ -6,8 +6,8 @@ import javafx.scene.paint.Color;
 public class RegularGameLogic extends GameLogic {
 
 
-    public RegularGameLogic(int boardSize, Color startingColor, Color notStartingColor) {
-        this.board = new Board(boardSize, startingColor, notStartingColor);
+    public RegularGameLogic(Board board, Color startingColor, Color notStartingColor) {
+        this.board = board;
         this.notStartingColor = notStartingColor;
         this.startingColor = startingColor;
     }

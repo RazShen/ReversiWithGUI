@@ -16,8 +16,8 @@ public abstract class GameLogic {
 
     public GameLogic() {};
 
-    public GameLogic(int boardSize, Color startingColor, Color notStartingColor) {
-        this.board = new Board(boardSize, startingColor, notStartingColor);
+    public GameLogic(Board board, Color startingColor, Color notStartingColor) {
+        this.board = board;
         this.notStartingColor = notStartingColor;
         this.startingColor = startingColor;
     }

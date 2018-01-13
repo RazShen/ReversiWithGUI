@@ -17,8 +17,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
-
-
     private Board board;
     private GameLogic gameLogic;
     private boolean isPlayer1;
@@ -74,8 +72,7 @@ public class GameController implements Initializable {
         gameStatus.getChildren().addAll(currentPlayer, player1Score, player2Score, message);
         root.getChildren().add(gameStatus);
         this.isPlayer1 = true;
-        this.gameLogic = new RegularGameLogic(this.board.getSize(), Color.web(this.player1Color),
-                Color.web(this.player2Color));
+        this.gameLogic = new RegularGameLogic(this.board, Color.web(this.player1Color), Color.web(this.player2Color));
         guiBoard.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             Pair move = convertClickToPair(e.getX(), e.getY());
             this.singleMove(move);
@@ -96,30 +93,37 @@ public class GameController implements Initializable {
         boolean validMove = this.gameLogic.checkInput(move, pArr, moves);
 
         if (validMove) {
+            if(this.isPlayer1) {
+                this.gameLogic.flipCell(move, Color.web(this.player2Color), Color.web(this.player1Color));
+                noMoreActionsP1 = false;
+                this.isPlayer1 = false;
+            }
+            else {
+                this.gameLogic.flipCell(move, Color.web(this.player1Color), Color.web(this.player2Color));
+                noMoreActionsP2 = false;
+                this.isPlayer1 = true;
+            }
+
+
 //            board.getTable()[move.getRow()][move.getCol()].updateStatus(otherTurn());
 //            logic.flipDeadCell(move.getRow(), move.getCol(), board);
 //            System.out.println(move.getRow() + " " + move.getCol());
 //            System.out.println(board.getTable()[move.getRow()][move.getCol()].getStatus());
-//            if (logic.getTurn() == Type.FIRST) {
-//                logic.setTurn(Type.SECOND);
-//                currentPlayer.setText("Current Player: Second");
-//                message.setText("Player 2: It's your move!");
-//            } else {
-//                logic.setTurn(Type.FIRST);
-//                currentPlayer.setText("Current Player: First");
-//                message.setText("Player 1: It's your move!");
-//            }
-//            board.setPossibleMoves(logic.getPossibleMoves());
-//            board.draw();
-//            firstScore = logic.checkScore(board.getTable(), boardSize, 1);
-//            secondScore = logic.checkScore(board.getTable(), boardSize, 2);
-//            player1Score.setText("First player's score: " + firstScore);
-//            player2Score.setText("Second Player's score : " + secondScore);
-            if (this.isPlayer1) {
-                this.isPlayer1 = false;
+            if (!isPlayer1) {
+                currentPlayer.setText("\nCurrent Player: Second");
+                message.setText("Player 2:\nIt's your move!");
             } else {
-                this.isPlayer1 = true;
+                currentPlayer.setText("\nCurrent Player: First");
+                message.setText("Player 1:\nIt's your move!");
             }
+//            board.setPossibleMoves(logic.getPossibleMoves());
+            guiBoard.setBoard(this.board);
+            guiBoard.draw();
+            firstScore = gameLogic.getFirstPlayerScore();
+            secondScore = gameLogic.getSecondPlayerScore();
+            player1Score.setText("First player's score: " + firstScore);
+            player2Score.setText("Second Player's score : " + secondScore);
+
         } else {
             if (this.board.isBoardFull() || (this.noMoreActionsP2 && this.noMoreActionsP1)) {
                 if (firstScore > secondScore) {
