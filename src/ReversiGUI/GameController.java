@@ -97,18 +97,29 @@ public class GameController implements Initializable {
                 this.gameLogic.flipCell(move, Color.web(this.player2Color), Color.web(this.player1Color));
                 noMoreActionsP1 = false;
                 this.isPlayer1 = false;
+//
+//
+//                pArr = new Pair[this.gameLogic.getBoardSize() * this.gameLogic.getBoardSize() + 1];
+//                moves = gameLogic.possibleMoves(pArr, moves, Color.web(this.player2Color));
+//                if(moves == 0) {
+//                    this.isPlayer1 = true;
+//                }
+
             }
             else {
                 this.gameLogic.flipCell(move, Color.web(this.player1Color), Color.web(this.player2Color));
                 noMoreActionsP2 = false;
                 this.isPlayer1 = true;
+//
+//
+//                pArr = new Pair[this.gameLogic.getBoardSize() * this.gameLogic.getBoardSize() + 1];
+//                moves = gameLogic.possibleMoves(pArr, moves, Color.web(this.player1Color));
+//                if(moves == 0) {
+//
+//                    this.isPlayer1 = false;
+//                }
+
             }
-
-
-//            board.getTable()[move.getRow()][move.getCol()].updateStatus(otherTurn());
-//            logic.flipDeadCell(move.getRow(), move.getCol(), board);
-//            System.out.println(move.getRow() + " " + move.getCol());
-//            System.out.println(board.getTable()[move.getRow()][move.getCol()].getStatus());
             if (!isPlayer1) {
                 currentPlayer.setText("\nCurrent Player: Second");
                 message.setText("Player 2:\nIt's your move!");
