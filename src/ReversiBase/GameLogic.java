@@ -11,15 +11,15 @@ public abstract class GameLogic {
      */
     enum ScanDirection {
         NorthWest, North, NorthEast, West, East, SouthWest, South, SouthEast
-    };
+    }
     /**
      * Enum for game winning.
      */
     enum GameWinner {
         Draw, BlackWon, WhiteWon
-    };
+    }
 
-    public GameLogic() {};
+    public GameLogic() {}
     /**
      * This constructor creates a basic game logic abstract class.
      * @param board inputted board.
@@ -59,7 +59,7 @@ public abstract class GameLogic {
     }
     /**
      * This method returns the size of the board.
-     * @return
+     * @return size of the board
      */
     public int getBoardSize() {
         return this.board.getSize();

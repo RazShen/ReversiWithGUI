@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 
 public class Game {
 
-    private boolean player1Turn;;
+    private boolean player1Turn;
     private Player player1;
     private Player player2;
     private Display display;

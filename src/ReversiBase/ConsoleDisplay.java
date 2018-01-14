@@ -4,11 +4,11 @@ package ReversiBase;
 import javafx.scene.paint.Color;
 
 public class ConsoleDisplay implements Display {
-    @Override
     /**
      * this method prints the board
      * @param board a given board
      */
+    @Override
     public void printBoard(Board board) {
         int size = board.getSize();
         GamePiece[][] gamePieces;
