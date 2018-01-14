@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -17,7 +18,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -35,17 +38,14 @@ public class GameController implements Initializable {
     private GuiBoard guiBoard;
     @FXML
     private HBox root;
-
     @FXML
     private Label message;
-
     @FXML
     private Label currentPlayer;
     @FXML
     private Label player1Score;
     @FXML
     private Label player2Score;
-
     @FXML
     private Label extraMessage;
 
@@ -86,7 +86,16 @@ public class GameController implements Initializable {
         root.setAlignment(Pos.TOP_LEFT);
         root.setSpacing(20);
         gameStatus.setSpacing(10);
+        root.widthProperty().addListener((observable, oldValue, newValue) -> {
+            double boardNewWidth = newValue.doubleValue() - 200;
+            guiBoard.setPrefWidth(boardNewWidth);
+            guiBoard.draw();
+        });
 
+        root.heightProperty().addListener((observable, oldValue, newValue) -> {
+            guiBoard.setPrefHeight(newValue.doubleValue());
+            guiBoard.draw();
+        });
         gameStatus.getChildren().addAll(currentPlayer, player1Score, player2Score, message, extraMessage, quit);
         root.getChildren().add(gameStatus);
         this.isPlayer1 = true;
@@ -99,7 +108,9 @@ public class GameController implements Initializable {
 
     @FXML
     protected void singleMove(Pair move) {
-        checkFinish();
+        if(checkFinish()) {
+            return;
+        }
         int moves = 0;
         Pair pArr[] = new Pair[this.gameLogic.getBoardSize() * this.gameLogic.getBoardSize() + 1];
         if (this.isPlayer1) {
@@ -107,7 +118,6 @@ public class GameController implements Initializable {
         } else {
             moves = gameLogic.possibleMoves(pArr, moves, Color.web(this.player2Color));
         }
-
 
         if (moves == 0) {
             if (this.isPlayer1) {
@@ -191,11 +201,12 @@ public class GameController implements Initializable {
 
 
     private Pair convertClickToPair(double x, double y) {
-        int cellSize = this.guiBoard.getCellSize();
+        double cellHight = this.guiBoard.getCellHight();
+        double cellWidth = this.guiBoard.getCellwidth();
         for (int i = 0; i < this.board.getSize() ; i++) {
             for (int j = 0; j < this.board.getSize(); j++) {
-                if (x >= i*cellSize && x <= (i+1)* cellSize) {
-                    if (y >= j*cellSize && y <= (j+1) * cellSize) {
+                if (x >= i*cellWidth && x <= (i+1)* cellWidth) {
+                    if (y >= j*cellHight && y <= (j+1) * cellHight) {
                         return new Pair( j+ 1, i+ 1);
                     }
                 }
@@ -230,16 +241,51 @@ public class GameController implements Initializable {
         int secondScore = gameLogic.getSecondPlayerScore();
 
         if (this.board.isBoardFull() || (this.noMoreActionsP2 && this.noMoreActionsP1)) {
-            if (firstScore > secondScore) {
-                message.setText("Game Over\nFirst player wins!");
-            } else if (secondScore > firstScore) {
-                message.setText("Game Over\nSecond player wins!");
-            } else {
-                message.setText("Game Over\nIt's a Tie!");
-            }
+            announceWinner();
+//            if (firstScore > secondScore) {
+//                message.setText("Game Over\nFirst player wins!");
+//            } else if (secondScore > firstScore) {
+//                message.setText("Game Over\nSecond player wins!");
+//            } else {
+//                message.setText("Game Over\nIt's a Tie!");
+//            }
             return true;
         }
         return false;
     }
 
+    public void announceWinner() {
+        int firstScore = gameLogic.getFirstPlayerScore();
+        int secondScore = gameLogic.getSecondPlayerScore();
+     //   Alert alert = new Alert();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        GridPane root = new GridPane();
+        Label label = new Label();
+        Button quit = new Button("Quit");
+        quit.setOnAction(ev -> {
+            loadFXML("MenuControllerFXML.fxml", 650, 600, ev);
+            stage.close();
+        });
+        if (firstScore == secondScore) {
+            label.setText("Game Over\nIt's a Tie!");
+            root.getChildren().addAll(label, quit);
+        } else {
+            if (secondScore > firstScore) {
+                label.setText("\n\n\n\nGame Over\nSecond player wins!");
+                Circle circle = new Circle(10,  Color.web(this.player2Color));
+                root.getChildren().addAll(label, circle, quit);
+
+
+            } else {
+                label.setText("\n\n\n\nGame Over\nIt's a Tie!");
+                Circle circle = new Circle(10,  Color.web(this.player1Color));
+                root.getChildren().addAll(label, circle, quit);
+            }
+            Scene scene = new Scene(root, 200, 100);
+            root.setPrefSize(scene.getWidth(), scene.getHeight());
+            stage.setScene(scene);
+            stage.showAndWait();
+        }
+    }
 }
