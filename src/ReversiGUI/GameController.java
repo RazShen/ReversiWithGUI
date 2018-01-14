@@ -9,8 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -37,7 +35,6 @@ public class GameController implements Initializable {
     private GuiBoard guiBoard;
     @FXML
     private HBox root;
-
 
     @FXML
     private Label message;
@@ -102,20 +99,7 @@ public class GameController implements Initializable {
 
     @FXML
     protected void singleMove(Pair move) {
-        int firstScore = gameLogic.getFirstPlayerScore();
-        int secondScore = gameLogic.getSecondPlayerScore();
-
-        if (this.board.isBoardFull() || (this.noMoreActionsP2 && this.noMoreActionsP1)) {
-            if (firstScore > secondScore) {
-                message.setText("Game Over\nFirst player wins!");
-            } else if (secondScore > firstScore) {
-                message.setText("Game Over\nSecond player wins!");
-            } else {
-                message.setText("Game Over\nIt's a Tie!");
-            }
-        }
-
-
+        checkFinish();
         int moves = 0;
         Pair pArr[] = new Pair[this.gameLogic.getBoardSize() * this.gameLogic.getBoardSize() + 1];
         if (this.isPlayer1) {
@@ -177,21 +161,14 @@ public class GameController implements Initializable {
 //            board.setPossibleMoves(logic.getPossibleMoves());
             guiBoard.setBoard(this.board);
             guiBoard.draw();
-            firstScore = gameLogic.getFirstPlayerScore();
-            secondScore = gameLogic.getSecondPlayerScore();
+            int firstScore = gameLogic.getFirstPlayerScore();
+            int secondScore = gameLogic.getSecondPlayerScore();
             player1Score.setText("Player 1 score: " + firstScore);
             player2Score.setText("Player 2 score: " + secondScore);
 
         }
         else {
-            if (this.board.isBoardFull() || (this.noMoreActionsP2 && this.noMoreActionsP1)) {
-                if (firstScore > secondScore) {
-                    message.setText("Game Over\nFirst player wins!");
-                } else if (secondScore > firstScore) {
-                    message.setText("Game Over\nSecond player wins!");
-                } else {
-                    message.setText("Game Over\nIt's a Tie!");
-                }
+            if(checkFinish()) {
             } else if (moves == 0) {
                 if (this.isPlayer1) {
                     message.setText("Player 1:\nYou have\nno more moves!");
@@ -247,4 +224,22 @@ public class GameController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    private boolean checkFinish() {
+        int firstScore = gameLogic.getFirstPlayerScore();
+        int secondScore = gameLogic.getSecondPlayerScore();
+
+        if (this.board.isBoardFull() || (this.noMoreActionsP2 && this.noMoreActionsP1)) {
+            if (firstScore > secondScore) {
+                message.setText("Game Over\nFirst player wins!");
+            } else if (secondScore > firstScore) {
+                message.setText("Game Over\nSecond player wins!");
+            } else {
+                message.setText("Game Over\nIt's a Tie!");
+            }
+            return true;
+        }
+        return false;
+    }
+
 }

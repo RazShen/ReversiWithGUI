@@ -10,7 +10,10 @@ public class Game {
     private Player player2;
     private Display display;
     private GameLogic gameLogic;
-
+    /**
+     * Constructor for HumanPlayersOnComputer class.
+     * @param gameLogic inputted pointer to game logic.
+     */
     public Game(GameLogic gameLogic, Display display, Color player1Color, Color player2Color) {
         this.gameLogic = gameLogic;
         this.display = display;
@@ -20,6 +23,9 @@ public class Game {
 
     }
 
+    /**
+     * This method runs the game.
+     */
     public void run() {
         boolean noMoreActionsB = false;
         boolean noMoreActionW = false;
