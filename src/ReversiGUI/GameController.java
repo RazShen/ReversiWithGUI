@@ -248,7 +248,7 @@ public class GameController implements Initializable {
 //                message.setText("Game Over\nSecond player wins!");
 //            } else {
 //                message.setText("Game Over\nIt's a Tie!");
-//            }
+//            }dd
             return true;
         }
         return false;
