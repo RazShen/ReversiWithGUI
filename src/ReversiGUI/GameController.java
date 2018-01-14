@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -237,8 +236,6 @@ public class GameController implements Initializable {
     }
 
     private boolean checkFinish() {
-        int firstScore = gameLogic.getFirstPlayerScore();
-        int secondScore = gameLogic.getSecondPlayerScore();
 
         if (this.board.isBoardFull() || (this.noMoreActionsP2 && this.noMoreActionsP1)) {
             announceWinner();
