@@ -242,13 +242,6 @@ public class GameController implements Initializable {
 
         if (this.board.isBoardFull() || (this.noMoreActionsP2 && this.noMoreActionsP1)) {
             announceWinner();
-//            if (firstScore > secondScore) {
-//                message.setText("Game Over\nFirst player wins!");
-//            } else if (secondScore > firstScore) {
-//                message.setText("Game Over\nSecond player wins!");
-//            } else {
-//                message.setText("Game Over\nIt's a Tie!");
-//            }dd
             return true;
         }
         return false;
@@ -257,10 +250,9 @@ public class GameController implements Initializable {
     public void announceWinner() {
         int firstScore = gameLogic.getFirstPlayerScore();
         int secondScore = gameLogic.getSecondPlayerScore();
-     //   Alert alert = new Alert();
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        GridPane root = new GridPane();
+        VBox root = new VBox();
         Label label = new Label();
         Button quit = new Button("Quit");
         quit.setOnAction(ev -> {
@@ -272,13 +264,12 @@ public class GameController implements Initializable {
             root.getChildren().addAll(label, quit);
         } else {
             if (secondScore > firstScore) {
-                label.setText("\n\n\n\nGame Over\nSecond player wins!");
+                label.setText("Game Over\nSecond player wins!");
                 Circle circle = new Circle(10,  Color.web(this.player2Color));
                 root.getChildren().addAll(label, circle, quit);
 
-
             } else {
-                label.setText("\n\n\n\nGame Over\nIt's a Tie!");
+                label.setText("Game Over\nFirst player wins!");
                 Circle circle = new Circle(10,  Color.web(this.player1Color));
                 root.getChildren().addAll(label, circle, quit);
             }
