@@ -1,5 +1,8 @@
+/*
+ * Tomer Grady 205660863
+ * Raz Shenkman 311130777
+ */
 package ReversiBase;
-
 
 import javafx.scene.paint.Color;
 

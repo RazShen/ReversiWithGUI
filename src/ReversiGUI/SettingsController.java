@@ -1,3 +1,7 @@
+/*
+ * Tomer Grady 205660863
+ * Raz Shenkman 311130777
+ */
 package ReversiGUI;
 
 import javafx.fxml.FXML;
@@ -16,10 +20,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the settings scene.
+ */
 public class SettingsController implements Initializable {
-
-
-
     @FXML
     private ColorPicker Player1Color;
 
@@ -33,7 +37,11 @@ public class SettingsController implements Initializable {
     private ChoiceBox<Integer> BoardSize;
     @FXML
     private Button MenuButton;
-
+    /**
+     * This method returns to the main menu.
+     *
+     * @throws IOException if failed.
+     */
     @FXML
     protected void mainMenu() throws IOException {
         try {
@@ -62,15 +70,21 @@ public class SettingsController implements Initializable {
 
 
     @Override
+    /**
+     * Initialize the settings.
+     */
     public void initialize(URL location, ResourceBundle resources) {
 
         WhoStarts.getItems().addAll("Player 1", "Player 2");
-        for(int i = 4; i < 21; i++) {
+        for (int i = 4; i < 21; i++) {
             BoardSize.getItems().add(i);
         }
         parseSettingsFile();
     }
 
+    /**
+     * This method initialize the values in the setting to show the current values.
+     */
     private void parseSettingsFile() {
         SettingsParser parser = new SettingsParser();
         parser.parseSettingsFile();

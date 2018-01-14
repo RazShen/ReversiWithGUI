@@ -1,3 +1,7 @@
+/*
+ * Tomer Grady 205660863
+ * Raz Shenkman 311130777
+ */
 package ReversiGUI;
 
 import javafx.fxml.FXML;
@@ -13,6 +17,7 @@ public class Controller {
     private PasswordField passwordField;
     @FXML
     private Text messageText;
+
     @FXML
     protected void signIn() {
         String username = usernameTextField.getText();
@@ -20,8 +25,7 @@ public class Controller {
         if (username.equals("roi") && password.equals("123456")) {
             messageText.setText("You are approved!");
             messageText.setFill(Color.BLUE);
-        }
-        else {
+        } else {
             messageText.setText("Invalid username or password");
             messageText.setFill(Color.RED);
         }

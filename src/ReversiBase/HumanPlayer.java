@@ -1,4 +1,9 @@
+/*
+ * Tomer Grady 205660863
+ * Raz Shenkman 311130777
+ */
 package ReversiBase;
+
 import javafx.scene.paint.Color;
 
 import java.io.BufferedReader;
@@ -8,16 +13,23 @@ public class HumanPlayer implements Player {
     private boolean isFirstPlayer;
     private Color gamePieceColor;
 
+    /**
+     * Constructor for human player.
+     * @param isFirst
+     * @param gamePieceColor
+     */
     HumanPlayer(boolean isFirst, Color gamePieceColor) {
         this.isFirstPlayer = isFirst;
         this.gamePieceColor = gamePieceColor;
     }
+
     /**
      * This method asks the user to pick he's selected move.
-     * @param positions possible moves.
-     * @param moves number of positions.
+     *
+     * @param positions     possible moves.
+     * @param moves         number of positions.
      * @param opponentColor color of the opponent.
-     * @param display display.
+     * @param display       display.
      * @return user's decided move.
      */
     public Pair getMove(Pair positions[], int moves, Color opponentColor, Display display) {
@@ -41,13 +53,16 @@ public class HumanPlayer implements Player {
 
     /**
      * check if the player is the starter player
+     *
      * @return true if he starts, false otherwise
      */
     public boolean isStarter() {
         return this.isFirstPlayer;
     }
+
     /**
      * this method appears when the player has no move
+     *
      * @param display a given display of the game
      */
     public void noMove(Display display) {
@@ -64,6 +79,7 @@ public class HumanPlayer implements Player {
 
     /**
      * the method returns the color of the player
+     *
      * @return the color of the player
      */
     public Color getColor() {
@@ -72,6 +88,7 @@ public class HumanPlayer implements Player {
 
     /**
      * this method sets the color of the player
+     *
      * @param gamePieceColor
      */
     public void setColor(Color gamePieceColor) {

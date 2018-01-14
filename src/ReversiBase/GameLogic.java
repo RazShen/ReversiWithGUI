@@ -1,3 +1,7 @@
+/*
+ * Tomer Grady 205660863
+ * Raz Shenkman 311130777
+ */
 package ReversiBase;
 
 
@@ -6,34 +10,26 @@ import javafx.scene.paint.Color;
 public abstract class GameLogic {
     protected Board board;
     protected Color startingColor, notStartingColor;
-    /**
-     * Enum for the board scanning directions.
-     */
-    enum ScanDirection {
-        NorthWest, North, NorthEast, West, East, SouthWest, South, SouthEast
-    }
-    /**
-     * Enum for game winning.
-     */
-    enum GameWinner {
-        Draw, BlackWon, WhiteWon
+
+    public GameLogic() {
     }
 
-    public GameLogic() {}
     /**
      * This constructor creates a basic game logic abstract class.
-     * @param board inputted board.
-     * @param startingColor inputted startingColor.
+     *
+     * @param board            inputted board.
+     * @param startingColor    inputted startingColor.
      * @param notStartingColor inputted notStartingColor.
-
      */
     public GameLogic(Board board, Color startingColor, Color notStartingColor) {
         this.board = board;
         this.notStartingColor = notStartingColor;
         this.startingColor = startingColor;
     }
+
     /**
      * This method returns who won the game, or draw by scanning the board cells.
+     *
      * @return who won the game, or draw
      */
     public GameWinner whoWon() {
@@ -42,9 +38,11 @@ public abstract class GameLogic {
         int size = this.getBoardSize();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (this.board.getCellStatus(new Pair(i, j)).getColor().toString().equals(notStartingColor.toString()) ) {
+                if (this.board.getCellStatus(new Pair(i, j)).getColor().toString()
+                        .equals(notStartingColor.toString())) {
                     secondPlayerCells++;
-                } else if (this.board.getCellStatus(new Pair(i, j)).getColor().toString().equals(startingColor.toString()) ) {
+                } else if (this.board.getCellStatus(new Pair(i, j)).getColor().toString()
+                        .equals(startingColor.toString())) {
                     firstPlayerCells++;
                 }
             }
@@ -57,15 +55,19 @@ public abstract class GameLogic {
             return GameWinner.Draw;
         }
     }
+
     /**
      * This method returns the size of the board.
+     *
      * @return size of the board
      */
     public int getBoardSize() {
         return this.board.getSize();
     }
+
     /**
      * This method checks if the game should end.
+     *
      * @param noMoreActionsB boolean for the black player possible move (have moves or don't have moves).
      * @param noMoreActionsW boolean for the while player possible move (have moves or don't have moves).
      * @return
@@ -86,7 +88,7 @@ public abstract class GameLogic {
         }
         if (noMoreActionsB && noMoreActionsW) {
             display.printString("No more moves available for both players: ");
-            if (this.whoWon() ==  GameWinner.Draw) {
+            if (this.whoWon() == GameWinner.Draw) {
                 display.printString("It's a draw");
             } else if (this.whoWon() == GameWinner.BlackWon) {
                 display.printString(this.startingColor.toString() + " player wins");
@@ -97,6 +99,7 @@ public abstract class GameLogic {
         }
         return false;
     }
+
     /**
      * This method returns the current board (used for cloning).
      */
@@ -106,6 +109,7 @@ public abstract class GameLogic {
 
     /**
      * thic method gets first player advantage
+     *
      * @return return the first player advantage
      */
     public int getFirstPlayerAdvantage() {
@@ -125,8 +129,10 @@ public abstract class GameLogic {
         }
         return (firstPlayerCells - secondPlayerCells);
     }
+
     /**
      * thic method gets first player score
+     *
      * @return return the first player score
      */
     public int getFirstPlayerScore() {
@@ -134,16 +140,18 @@ public abstract class GameLogic {
         int boardSize = this.getBoardSize();
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
-                 if (this.board.getCellStatus(new Pair(i, j)).getColor().toString()
-                         .equals(this.startingColor.toString()) ) {
+                if (this.board.getCellStatus(new Pair(i, j)).getColor().toString()
+                        .equals(this.startingColor.toString())) {
                     firstPlayerCells++;
                 }
             }
         }
         return firstPlayerCells;
     }
+
     /**
      * thic method gets second player score
+     *
      * @return return the second player score
      */
     public int getSecondPlayerScore() {
@@ -152,50 +160,74 @@ public abstract class GameLogic {
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
                 if (this.board.getCellStatus(new Pair(i, j)).getColor()
-                        .toString().equals(this.notStartingColor.toString()) ) {
+                        .toString().equals(this.notStartingColor.toString())) {
                     secondPlayerCells++;
                 }
             }
         }
         return secondPlayerCells;
     }
+
     /**
      * Pure virtual function to check if the move is valid.
-     * @param p wanted cell.
-     * @param scanD scan direction.
+     *
+     * @param p         wanted cell.
+     * @param scanD     scan direction.
      * @param opponentP opponent's player color.
-     * @param player: player's color.
+     * @param player:   player's color.
      * @return true/false.
      */
     abstract public boolean validMove(Pair p, ScanDirection scanD, Color opponentP, Color player);
+
     /**
      * Pure virtual function to update all the possible moves.
+     *
      * @param pairArr inputted array to update.
-     * @param index number of moves.
-     * @param player player's color.
+     * @param index   number of moves.
+     * @param player  player's color.
      */
     abstract public int possibleMoves(Pair pairArr[], int index, Color player);
+
     /**
      * Pure virtual function to check if the cell is a possible move.
-     * @param p inputted pair.
+     *
+     * @param p         inputted pair.
      * @param opponentP opponent's player color.
-     * @param player: player's color.
+     * @param player:   player's color.
      * @return true/false.
      */
     abstract public boolean checkCell(Pair p, Color opponentP, Color player);
+
     /**
      * Pure virtual function to flip the right cells after the user played it's turn.
-     * @param p inputted pair (wanted move).
+     *
+     * @param p         inputted pair (wanted move).
      * @param opponentP opponent's player color.
-     * @param player: player's color.
+     * @param player:   player's color.
      */
     abstract public void flipCell(Pair p, Color opponentP, Color player);
+
     /**
      * Virtual method to checks the users input validation (right format & picking a move from the possible moves)
-     * @param p wanted users move.
-     * @param arr array of possible moves.
+     *
+     * @param p     wanted users move.
+     * @param arr   array of possible moves.
      * @param count number of possible moves.
      * @return true/false for good/bad format.
      */
     abstract public boolean checkInput(Pair p, Pair arr[], int count);
+
+    /**
+     * Enum for the board scanning directions.
+     */
+    enum ScanDirection {
+        NorthWest, North, NorthEast, West, East, SouthWest, South, SouthEast
+    }
+
+    /**
+     * Enum for game winning.
+     */
+    enum GameWinner {
+        Draw, BlackWon, WhiteWon
+    }
 }

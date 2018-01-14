@@ -1,3 +1,7 @@
+/*
+ * Tomer Grady 205660863
+ * Raz Shenkman 311130777
+ */
 package ReversiBase;
 
 
@@ -139,7 +143,8 @@ public class RegularGameLogic extends GameLogic {
                 this.board.getCellStatus(new Pair(p.getRow() - 1, p.getCol() - 1))
                         .getColor().toString().equals(opponentP.toString())) {
             //scan north-west
-            if (validMove(new Pair(p.getRow() - 1, p.getCol() - 1), ScanDirection.NorthWest, opponentP, player)) {
+            if (validMove(new Pair(p.getRow() - 1, p.getCol() - 1),
+                    ScanDirection.NorthWest, opponentP, player)) {
                 return true;
             }
         }
@@ -155,7 +160,8 @@ public class RegularGameLogic extends GameLogic {
                 this.board.getCellStatus(new Pair(p.getRow() - 1, p.getCol() + 1))
                         .getColor().toString().equals(opponentP.toString())) {
             //scan north-east
-            if (validMove(new Pair(p.getRow() - 1, p.getCol() + 1), ScanDirection.NorthEast, opponentP, player)) {
+            if (validMove(new Pair(p.getRow() - 1, p.getCol() + 1),
+                    ScanDirection.NorthEast, opponentP, player)) {
                 return true;
             }
         }
@@ -169,7 +175,8 @@ public class RegularGameLogic extends GameLogic {
         if (p.getCol() < size - 1 && this.board.getCellStatus(new Pair(p.getRow(), p.getCol() + 1))
                 .getColor().toString().equals(opponentP.toString())) {
             //scan east
-            if (validMove(new Pair(p.getRow(), p.getCol() + 1), ScanDirection.East, opponentP, player)) {
+            if (validMove(new Pair(p.getRow(), p.getCol() + 1),
+                    ScanDirection.East, opponentP, player)) {
                 return true;
             }
         }
@@ -177,7 +184,8 @@ public class RegularGameLogic extends GameLogic {
                 this.board.getCellStatus(new Pair(p.getRow() + 1, p.getCol() - 1))
                         .getColor().toString().equals(opponentP.toString())) {
             //scan south-west
-            if (validMove(new Pair(p.getRow() + 1, p.getCol() - 1), ScanDirection.SouthWest, opponentP, player)) {
+            if (validMove(new Pair(p.getRow() + 1, p.getCol() - 1),
+                    ScanDirection.SouthWest, opponentP, player)) {
                 return true;
             }
         }
@@ -192,7 +200,8 @@ public class RegularGameLogic extends GameLogic {
                 this.board.getCellStatus(new Pair(p.getRow() + 1, p.getCol() + 1))
                         .getColor().toString().equals(opponentP.toString())) {
             //scan south-east
-            if (validMove(new Pair(p.getRow() + 1, p.getCol() + 1), ScanDirection.SouthEast, opponentP, player)) {
+            if (validMove(new Pair(p.getRow() + 1, p.getCol() + 1),
+                    ScanDirection.SouthEast, opponentP, player)) {
                 return true;
             }
         }

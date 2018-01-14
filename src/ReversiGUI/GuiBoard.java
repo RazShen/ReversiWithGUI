@@ -1,3 +1,7 @@
+/*
+ * Tomer Grady 205660863
+ * Raz Shenkman 311130777
+ */
 package ReversiGUI;
 
 import ReversiBase.Board;
@@ -16,38 +20,42 @@ import java.io.IOException;
 
 import static java.lang.Math.min;
 
+/**
+ * This class holds a board and is in charge of printing it.
+ */
 public class GuiBoard extends GridPane {
     private Board board;
     private double cellHight;
     private double cellWidth;
+
+    /**
+     * Constructor from a board.
+     *
+     * @param board
+     */
     public GuiBoard(Board board) {
         this.board = board;
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GuiBoard.fxml"));
-//        fxmlLoader.setRoot(this);
-//        fxmlLoader.setController(this);
-//
-//        try {
-//            fxmlLoader.load();
-//        } catch (IOException exception) {
-//            throw new RuntimeException(exception);
-//        }
     }
 
+    /**
+     * Sets a new board for the guiBoard.
+     *
+     * @param board
+     */
     public void setBoard(Board board) {
         this.board = board;
     }
 
+    /**
+     * Draws the board.
+     */
     public void draw() {
         this.getChildren().clear();
-
         double height = this.getPrefHeight();
         double width = this.getPrefWidth();
-
-        //this.add(new Label("Item Listing"), 1, 1);
-
         double cellHeight = height / board.getSize();
         double cellWidth = width / board.getSize();
-        double radius = (Math.min(cellHeight,cellWidth)/2);
+        double radius = (Math.min(cellHeight, cellWidth) / 2);
         this.cellHight = (height / board.getSize()) + 1;
         this.cellWidth = (width / board.getSize()) + 1;
         for (int i = 0; i < board.getSize(); i++) {
@@ -59,28 +67,30 @@ public class GuiBoard extends GridPane {
                 pane.getChildren().addAll(rec);
                 //this.add(pane, j, i);
                 if (!board.getGamePieces()[i][j].isEmpty()) {
-                    pane.getChildren().add(new Circle(((cellWidth + 1) / 2) * i, ((cellHeight + 1) / 2) * j, radius, board.getGamePieces()[i][j].getColor()));
+                    pane.getChildren().add(new Circle(((cellWidth + 1) / 2) * i,
+                            ((cellHeight + 1) / 2) * j, radius, board.getGamePieces()[i][j].getColor()));
                     this.add(pane, j, i);
                 } else {
-                    this.add(pane, j,i);
-                    }
+                    this.add(pane, j, i);
                 }
+            }
         }
-//        for (int i = 0; i < board.getSize(); i++) {
-//            for (int j = 0; j < board.getSize(); j++) {
-//                if (!board.getGamePieces()[i][j].isEmpty()) {
-//                    this.add(new Circle(((cellWidth+1)/2)*i,((cellHeight+1)/2)*j, radius, Color.WHITE), j, i);
-//                }
-//            }
-//        }
     }
 
-//    public double getCellSize() {
-//        return this.cellSize;
-//    }
+    /**
+     * Returns the cell width.
+     *
+     * @return cell width.
+     */
     public double getCellwidth() {
         return this.cellWidth;
     }
+
+    /**
+     * Returns the cell height.
+     *
+     * @return cell height.
+     */
     public double getCellHight() {
         return this.cellHight;
     }

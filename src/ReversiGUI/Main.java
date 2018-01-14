@@ -1,4 +1,9 @@
+/*
+ * Tomer Grady 205660863
+ * Raz Shenkman 311130777
+ */
 package ReversiGUI;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -6,7 +11,19 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+/**
+ * This class starts the menu.
+ */
 public class Main extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    /**
+     * THis method starts the menu controller.
+     *
+     * @param primaryStage main stage.
+     */
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -17,11 +34,8 @@ public class Main extends Application {
             primaryStage.setTitle("Reversi");
             primaryStage.setScene(scene);
             primaryStage.show();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    public static void main(String[] args) {
-        launch(args);
     }
 }

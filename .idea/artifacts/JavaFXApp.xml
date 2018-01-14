@@ -3,7 +3,13 @@
     <output-path>$PROJECT_DIR$/out/artifacts/JavaFXApp</output-path>
     <properties id="javafx-properties">
       <options>
-        <option name="appClass" value="sample.Main" />
+        <option name="appClass" value="ReversiGUI.Main" />
+        <option name="description" value="" />
+        <option name="height" value="650" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="Reversi" />
+        <option name="vendor" value="Tomer Grady and Raz Shenkman" />
+        <option name="version" value="1.0" />
       </options>
     </properties>
     <root id="root">

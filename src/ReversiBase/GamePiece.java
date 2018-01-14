@@ -1,3 +1,7 @@
+/*
+ * Tomer Grady 205660863
+ * Raz Shenkman 311130777
+ */
 package ReversiBase;
 
 
@@ -15,6 +19,9 @@ public class GamePiece {
         return isEmpty;
     }
 
+    /**
+     * This method returns if the game piece is empty.
+     */
     GamePiece() {
         this.isEmpty = true;
     }
