@@ -100,7 +100,7 @@ public class SettingsParser {
         this.boardSize = 8;
         this.startingPlayer = "player1";
         this.Player1Color = Color.BLACK.toString();
-        this.Player2Color = Color.WHITE.toString();
+        this.Player2Color = Color.GRAY.toString();
     }
 
     /**

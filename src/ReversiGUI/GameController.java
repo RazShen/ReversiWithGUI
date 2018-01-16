@@ -53,6 +53,10 @@ public class GameController implements Initializable {
     private Label extraMessage;
     @FXML
     private Button quit;
+    @FXML
+    private Circle colorPlayer;
+    private boolean firstIter = true;
+
 
     /**
      * This method initializes the game controller.
@@ -82,6 +86,10 @@ public class GameController implements Initializable {
         guiBoard.draw();
         VBox gameStatus = new VBox();
         currentPlayer = new Label("\nCurrent player: Player 1");
+        if(firstIter) {
+            colorPlayer = new Circle(10, Color.web(this.player1Color));
+        }
+        firstIter = false;
         player1Score = new Label("First player score: 2");
         player2Score = new Label("Second player score: 2");
         message = new Label("Player 1:\nIt's your move!");
@@ -105,7 +113,7 @@ public class GameController implements Initializable {
             guiBoard.setPrefHeight(newValue.doubleValue());
             guiBoard.draw();
         });
-        gameStatus.getChildren().addAll(currentPlayer, player1Score, player2Score, message, extraMessage, quit);
+        gameStatus.getChildren().addAll(currentPlayer, colorPlayer, player1Score, player2Score, message, extraMessage, quit);
         root.getChildren().add(gameStatus);
         this.isPlayer1 = true;
         this.gameLogic = new RegularGameLogic(this.board, Color.web(this.player1Color), Color.web(this.player2Color));
@@ -146,7 +154,7 @@ public class GameController implements Initializable {
                 pArr = new Pair[this.gameLogic.getBoardSize() * this.gameLogic.getBoardSize() + 1];
                 moves2 = gameLogic.possibleMoves(pArr, moves2, Color.web(this.player2Color));
                 if (moves2 == 0) {
-                    message.setText("Player 2:\nYou1 have\nno more moves!");
+                    message.setText("Player 2:\nYou have\nno more moves!");
                     this.isPlayer1 = true;
                     this.noMoreActionsP2 = true;
                     int moves3 = 0;
@@ -159,6 +167,8 @@ public class GameController implements Initializable {
                         return;
                     }
                     currentPlayer.setText("\nCurrent Player: Player 1");
+                    colorPlayer.setFill(Color.web(this.player1Color));
+
                     message.setText("Player 1:\nIt's your move!");
                     guiBoard.setBoard(this.board);
                     guiBoard.draw();
@@ -168,6 +178,7 @@ public class GameController implements Initializable {
                     player2Score.setText("Player 2 score: " + secondScore);
                 } else {
                     currentPlayer.setText("\nCurrent Player: Player 2");
+                    colorPlayer.setFill(Color.web(this.player2Color));
                     message.setText("Player 2:\nIt's your move!");
                     guiBoard.setBoard(this.board);
                     guiBoard.draw();
@@ -190,7 +201,7 @@ public class GameController implements Initializable {
                 pArr = new Pair[this.gameLogic.getBoardSize() * this.gameLogic.getBoardSize() + 1];
                 moves2 = gameLogic.possibleMoves(pArr, moves2, Color.web(this.player1Color));
                 if (moves2 == 0) {
-                    message.setText("Player 1:\nYou2 have\nno more moves!");
+                    message.setText("Player 1:\nYou have\nno more moves!");
                     this.isPlayer1 = false;
                     this.noMoreActionsP1 = true;
                     int moves3 = 0;
@@ -204,6 +215,7 @@ public class GameController implements Initializable {
                     }
                     currentPlayer.setText("\nCurrent Player: Player 2");
                     message.setText("Player 2:\nIt's your move!");
+                    colorPlayer.setFill(Color.web(this.player2Color));
                     guiBoard.setBoard(this.board);
                     guiBoard.draw();
                     int firstScore = gameLogic.getFirstPlayerScore();
@@ -213,6 +225,8 @@ public class GameController implements Initializable {
                 } else {
                     currentPlayer.setText("\nCurrent Player: Player 1");
                     message.setText("Player 1:\nIt's your move!");
+                    colorPlayer.setFill(Color.web(this.player1Color));
+
                     guiBoard.setBoard(this.board);
                     guiBoard.draw();
                     int firstScore = gameLogic.getFirstPlayerScore();
